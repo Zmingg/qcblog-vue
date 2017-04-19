@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Webpack Sample Project</title>
+    
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>清尘居 </title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" href="/favicon.png">
+
+
+<link rel="stylesheet" type="text/css" href="./assets/css/amazeui.css">
+<link rel="stylesheet" href="./assets/css/app.css">
+
+<style type="text/css">
+@media only screen and (min-width:641px){
+  body{font-size:1.4rem;}
+}
+</style>
+</head>
+
+<body>
+<div id="app">
+
+<header class="am-topbar am-topbar-fixed-top">
+<div class="am-container">
+    <h1 class="am-topbar-brand">
+        <a href="/">清 尘 居</a>
+    </h1>
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm  am-show-sm-only " data-am-offcanvas="{target: '#doc-side', effect: 'push'}">
+    <span class="am-icon-bars"></span>
+    </button>
+    <div class="am-topbar-right am-nav am-nav-pills am-topbar-nav am-hide-sm-only">
+    <ul class="am-nav am-nav-pills am-topbar-nav">
+
+
+      <li name="index"><a href="/">首页</a></li>
+      <li name="blog"><router-link to="/blog">文章</router-link></li>
+
+      <li name="auth"><a href="">登陆</a></li>
+
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          个人信息 <span class="am-icon-caret-down"></span>
+        </a>
+      <ul class="am-dropdown-content">
+        <li><a></a></li>
+        <li>
+          <a href=""
+          onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">
+          退出登陆
+          </a>
+          <form id="logout-form" action="" method="POST" style="display: none;">
+
+          </form>
+      </li>
+      </ul>
+      </li>
+
+      </ul>
+    </div>
+
+  
+</div>
+</header>
+<!-- 侧边栏内容 -->
+    <div id="doc-side" class="am-offcanvas">
+        <div class="amz-sidebar am-offcanvas-bar am-offcanvas-bar-overlay am-offcanvas-bar-active">
+            <div class="am-offcanvas-content">
+            <ul class="am-nav my-nav-side">
+                <li class="am-nav-header"><a href="">清 尘 居</a></li>
+                <li name="">
+                  <a href="">所有文章<span class="am-nav-en">all blogs</span></a>
+                </li>
+        
+                <li class="">
+                  <a href=""><span class="am-nav-en"></span></a>
+                </li>
+      
+                <li name="auth">
+                
+                  <a href="">登陆<span class="am-nav-en">Login</span></a>
+               
+                  <a href=""><span class="am-nav-en">登出</span></a>
+              
+                </li>
+            
+            </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+<router-view></router-view>
+
+
+
+<div class="am-container">
+
+    <br>
+
+    <div class="copyright">
+        <p>Copyright © 1999-2016, QC.TEC, All Rights Reserved</p>
+    </div>
+
+    <br>
+
+</div>
+
+</div>
+</body>
+</html>
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/amazeui.min.js"></script>
+<script src="./index.js"></script>
