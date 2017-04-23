@@ -48,13 +48,19 @@ export default {
 		}
 	},
 
+	watch:{
+		'$route':function(){
+			this.getBlog();
+		}
+	},
+
 	mounted:function(){
 		this.getBlog();
 	},
 
 	methods:{
 		getBlog:function(){
-			this.$http.jsonp("http://laravel.cc/api/blogshow",{
+			this.$http.jsonp("http://zmhjy.xyz/api/blogshow",{
 				jsonp:'api',
 				params:this.$route.params
 			}).then(function(res){

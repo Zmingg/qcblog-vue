@@ -40,6 +40,7 @@
 
 <header class="am-topbar am-topbar-fixed-top">
 <div class="am-container">
+
     <h1 class="am-topbar-brand">
         <a href="/">清 尘 居</a>
     </h1>
@@ -47,36 +48,13 @@
     <span class="am-icon-bars"></span>
     </button>
     <div class="am-topbar-right am-nav am-nav-pills am-topbar-nav am-hide-sm-only">
+
     <ul class="am-nav am-nav-pills am-topbar-nav">
-
-
       <li name="index"><router-link to="/">首页</router-link></li>
       <li name="blog"><router-link to="/blog">文章</router-link></li>
-
       <li name="auth"><a href="">登陆</a></li>
-
-      <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-          个人信息 <span class="am-icon-caret-down"></span>
-        </a>
-      <ul class="am-dropdown-content">
-        <li><a></a></li>
-        <li>
-          <a href=""
-          onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();">
-          退出登陆
-          </a>
-          <form id="logout-form" action="" method="POST" style="display: none;">
-
-          </form>
-      </li>
-      </ul>
-      </li>
-
       </ul>
     </div>
-
   
 </div>
 </header>

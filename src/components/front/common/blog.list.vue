@@ -10,7 +10,7 @@
 </li>
 <li><a>文章</a></li>
 <li class="am-active">
-
+{{$route.params.cate?$route.params.cate:'all'}}
 </li>
 </ol>
 <hr>
@@ -52,9 +52,9 @@
             <div class="am-list-item-text am-hide-sm-down blog-item-meta">
             <i class="am-icon-tags am-icon-xs"></i>&nbsp
 
-
-            <a v-for="tag in blog.tagsarr" :href='tag|taglink' class="blog-item-tags">{{tag}}&nbsp</a>
-
+            <router-link :to="'/blog/search/'+tag " v-for="(tag,index) in blog.tagsarr" :key="index" class="blog-item-tags">
+            {{tag}}&nbsp
+            </router-link>
             &nbsp&nbsp
             <i class="am-icon-eye am-icon-xs"></i>
             <span class="blog-item-click">{{blog.click}}</span>
@@ -77,20 +77,25 @@ export default {
     data:function(){
         return {
             blogs:[],
-            cates:[]
+            cates:[],
         }
     },
 
-
     filters:{
         src:function(url){
-            return 'http://laravel.cc/'+url;
+            return 'http://zmhjy.xyz/'+url;
         },
         href:function(id,title=''){
             return '/blog/'+id+'/'+title;
         },
         taglink:function(tag){
-            return 'http://laravel.cc/blog?tag='+tag;
+            return 'http://zmhjy.xyz/blog?tag='+tag;
+        }
+    },
+
+    watch:{
+        '$route':function(){
+            this.getBlogs();
         }
     },
         
@@ -101,13 +106,13 @@ export default {
 
     methods:{
         getBlogs:function(){
-            this.$http.jsonp("http://laravel.cc/api/blogs",{
+            this.$http.jsonp("http://zmhjy.xyz/api/blogs",{
                 jsonp:'api',
                 params:Object.assign(this.$route.params,{count:8})
-            }).then( (res) => this.blogs = res.body);     
+            }).then( (res) => this.blogs = res.body.data);     
         },
         getCates:function(){
-            this.$http.jsonp("http://laravel.cc/api/cates",{
+            this.$http.jsonp("http://zmhjy.xyz/api/cates",{
                 jsonp:'api',
             }).then( (res) => this.cates = res.body);     
         }

@@ -14038,13 +14038,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 
+	watch: {
+		'$route': function () {
+			this.getBlog();
+		}
+	},
+
 	mounted: function () {
 		this.getBlog();
 	},
 
 	methods: {
 		getBlog: function () {
-			this.$http.jsonp("http://laravel.cc/api/blogshow", {
+			this.$http.jsonp("http://zmhjy.xyz/api/blogshow", {
 				jsonp: 'api',
 				params: this.$route.params
 			}).then(function (res) {
@@ -14146,13 +14152,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     filters: {
         src: function (url) {
-            return 'http://laravel.cc/' + url;
+            return 'http://zmhjy.xyz/' + url;
         },
         href: function (id, title = '') {
             return '/blog/' + id + '/' + title;
         },
         taglink: function (tag) {
-            return 'http://laravel.cc/blog?tag=' + tag;
+            return 'http://zmhjy.xyz/blog?tag=' + tag;
+        }
+    },
+
+    watch: {
+        '$route': function () {
+            this.getBlogs();
         }
     },
 
@@ -14163,13 +14175,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         getBlogs: function () {
-            this.$http.jsonp("http://laravel.cc/api/blogs", {
+            this.$http.jsonp("http://zmhjy.xyz/api/blogs", {
                 jsonp: 'api',
                 params: Object.assign(this.$route.params, { count: 8 })
-            }).then(res => this.blogs = res.body);
+            }).then(res => this.blogs = res.body.data);
         },
         getCates: function () {
-            this.$http.jsonp("http://laravel.cc/api/cates", {
+            this.$http.jsonp("http://zmhjy.xyz/api/cates", {
                 jsonp: 'api'
             }).then(res => this.cates = res.body);
         }
@@ -14207,7 +14219,7 @@ module.exports = {
 
     filters: {
         src: function (url) {
-            return 'http://laravel.cc/' + url;
+            return 'http://zmhjy.xyz/' + url;
         },
         href: function (id, title) {
             return '/blog/' + id + '/' + title;
@@ -14220,7 +14232,7 @@ module.exports = {
 
     methods: {
         getblogs: function () {
-            this.$http.jsonp("http://laravel.cc/api/hots", {
+            this.$http.jsonp("http://zmhjy.xyz/api/hots", {
                 jsonp: 'api',
                 params: { count: 8 }
             }).then(function (res) {
@@ -14276,7 +14288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         getnews: function () {
-            this.$http.jsonp("http://laravel.cc/api/news", {
+            this.$http.jsonp("http://zmhjy.xyz/api/news", {
                 jsonp: 'api',
                 params: { count: 6 }
             }).then(res => this.blogs = res.body);
@@ -14408,19 +14420,13 @@ module.exports = {
         };
     },
 
-    filters: {
-        href: function (tagname) {
-            return 'http://laravel.cc/blog?tag=' + tagname;
-        }
-    },
-
     created: function () {
         this.gettags();
     },
 
     methods: {
         gettags: function () {
-            this.$http.jsonp("http://laravel.cc/api/tags", {
+            this.$http.jsonp("http://zmhjy.xyz/api/tags", {
                 jsonp: 'api',
                 params: { count: 12 }
             }).then(function (res) {
@@ -16783,7 +16789,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("首页\n")])], 1), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('li', {
     staticClass: "am-active"
-  })]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('ol', {
+  }, [_vm._v("\n" + _vm._s(_vm.$route.params.cate ? _vm.$route.params.cate : 'all') + "\n")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('ol', {
     staticClass: "am-breadcrumb am-breadcrumb-slash"
   }, _vm._l((_vm.cates), function(cate) {
     return _c('li', {
@@ -16832,14 +16838,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "am-list-item-text am-hide-sm-down blog-item-meta"
     }, [_c('i', {
       staticClass: "am-icon-tags am-icon-xs"
-    }), _vm._v(" \n\n\n            "), _vm._l((blog.tagsarr), function(tag) {
-      return _c('a', {
+    }), _vm._v(" \n\n            "), _vm._l((blog.tagsarr), function(tag, index) {
+      return _c('router-link', {
+        key: index,
         staticClass: "blog-item-tags",
         attrs: {
-          "href": _vm._f("taglink")(tag)
+          "to": '/blog/search/' + tag
         }
-      }, [_vm._v(_vm._s(tag) + " ")])
-    }), _vm._v("\n\n              \n            "), _c('i', {
+      }, [_vm._v("\n            " + _vm._s(tag) + " \n            ")])
+    }), _vm._v("\n              \n            "), _c('i', {
       staticClass: "am-icon-eye am-icon-xs"
     }), _vm._v(" "), _c('span', {
       staticClass: "blog-item-click"
@@ -17038,10 +17045,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "am-panel am-panel-default list-side"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "am-list am-list-border tags-border"
-  }, _vm._l((_vm.tags), function(tag) {
-    return _c('a', {
+  }, _vm._l((_vm.tags), function(tag, index) {
+    return _c('router-link', {
+      key: index,
       attrs: {
-        "href": _vm._f("href")(tag.tagname)
+        "to": '/blog/search/' + tag.tagname
       }
     }, [_c('span', {
       staticClass: "am-badge am-radius am-text-sm",
@@ -17492,6 +17500,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]({
 	routes:[
 		{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_front_Index_vue___default.a },
 		{ path: '/blog/:cate?', component: __WEBPACK_IMPORTED_MODULE_4__components_front_Blog_vue___default.a },
+		{ path: '/blog/search/:tag', component: __WEBPACK_IMPORTED_MODULE_4__components_front_Blog_vue___default.a },
 		{ path: '/blog/:id/:title?', component: __WEBPACK_IMPORTED_MODULE_5__components_front_BlogShow_vue___default.a },
 	]
 })

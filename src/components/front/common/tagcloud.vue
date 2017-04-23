@@ -6,9 +6,9 @@
 	<div class="am-list am-list-border tags-border">
 
 
-	<a :href="tag.tagname | href" v-for="tag in tags">
+	<router-link :to="'/blog/search/'+tag.tagname " v-for="(tag,index) in tags" :key="index">
 	<span :class="tag.style" class="am-badge am-radius am-text-sm">{{tag.tagname}}</span>
-	</a>
+	</router-link>
 
 
 	</div> 
@@ -24,19 +24,13 @@ module.exports = {
         }
     },
 
-    filters:{
-        href:function(tagname){
-            return 'http://laravel.cc/blog?tag='+tagname;
-        }
-    },
-
     created:function(){
         this.gettags();
     },
 
     methods:{
     	gettags:function(){
-    		this.$http.jsonp("http://laravel.cc/api/tags",{
+    		this.$http.jsonp("http://zmhjy.xyz/api/tags",{
 	                jsonp:'api',
 	                params:{count:12}
 		}).then(function(res){

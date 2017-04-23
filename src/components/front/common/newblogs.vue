@@ -37,7 +37,7 @@ export default {
 
     methods:{
         getnews:function(){
-            this.$http.jsonp("http://laravel.cc/api/news",{
+            this.$http.jsonp("http://zmhjy.xyz/api/news",{
                 jsonp:'api',
                 params:{ count:6 }
             }).then((res) => this.blogs = res.body);     

@@ -13,6 +13,7 @@ const router = new VueRouter({
 	routes:[
 		{ path: '/', component: Index },
 		{ path: '/blog/:cate?', component: Blog },
+		{ path: '/blog/search/:tag', component: Blog },
 		{ path: '/blog/:id/:title?', component: BlogShow },
 	]
 })

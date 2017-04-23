@@ -26,7 +26,7 @@ module.exports = {
 
     filters:{
         src:function(url){
-            return 'http://laravel.cc/'+url;
+            return 'http://zmhjy.xyz/'+url;
         },
         href:function(id,title){
             return '/blog/'+id+'/'+title;
@@ -39,7 +39,7 @@ module.exports = {
 
     methods:{
         getblogs:function(){
-            this.$http.jsonp("http://laravel.cc/api/hots",{
+            this.$http.jsonp("http://zmhjy.xyz/api/hots",{
                 jsonp:'api',
                 params:{count:8}
             }).then(function(res){
