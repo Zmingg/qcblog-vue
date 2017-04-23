@@ -4,8 +4,11 @@
 <div class="am-hide-sm my-bread-panel am-panel am-panel-default">
 <div class="am-panel-bd">
 <ol class="am-breadcrumb">
-<li><i class="am-icon-home am-icon-xs">&nbsp  </i><a href="/">首页</a></li>
-<li><a href="">文章</a></li>
+<li><i class="am-icon-home am-icon-xs">&nbsp  </i>
+<router-link to="/">首页
+</router-link>
+</li>
+<li><a>文章</a></li>
 <li class="am-active">
 
 </li>
@@ -14,7 +17,9 @@
 <ol class="am-breadcrumb am-breadcrumb-slash">
 
 <li v-for="cate in cates" class="active">
-<a href="">{{cate.name}}</a>
+    <router-link :to="'/blog/'+cate.alias ">
+    {{cate.name}}
+    </router-link>
 </li>
 
 </ol>
@@ -29,15 +34,17 @@
         <li  v-for="blog in blogs" class="am-g am-list-item-thumbed blog-item">
 
         <div class="am-u-sm-5 am-u-md-4 am-u-lg-4 am-item-thumb">
-            <a :href=" blog.id | href(blog.title) " class="">
+        <router-link :to=" blog.id | href(blog.title) ">
             <img :src=" blog.thumb_img | src " alt=""/>
-            </a>
+        </router-link>
         </div>
 
         <div class=" am-u-sm-7 am-u-md-8 am-u-lg-8 am-list-main">
 
             <h2 class="am-list-item-hd blog-item-title">
-            <a :href=" blog.id | href(blog.title) "><p class="am-text-truncate">{{ blog.title }}</p></a>
+            <router-link :to=" blog.id | href(blog.title) ">
+                <p class="am-text-truncate">{{ blog.title }}</p>
+            </router-link>
             </h2>
 
             <div class="am-list-item-text blog-item-text">{{ blog.abstract }}</div>
@@ -75,20 +82,19 @@ export default {
     },
 
 
-
     filters:{
         src:function(url){
             return 'http://laravel.cc/'+url;
         },
-        href:function(id,title){
-            return 'http://laravel.cc/blog/'+id+'/'+title;
+        href:function(id,title=''){
+            return '/blog/'+id+'/'+title;
         },
         taglink:function(tag){
             return 'http://laravel.cc/blog?tag='+tag;
         }
     },
         
-    created:function(){
+    mounted:function(){
         this.getBlogs();
         this.getCates();
     },
@@ -97,17 +103,13 @@ export default {
         getBlogs:function(){
             this.$http.jsonp("http://laravel.cc/api/blogs",{
                 jsonp:'api',
-                params:{count:8}
-            }).then(function(res){
-                this.blogs = res.body;
-            });     
+                params:Object.assign(this.$route.params,{count:8})
+            }).then( (res) => this.blogs = res.body);     
         },
         getCates:function(){
             this.$http.jsonp("http://laravel.cc/api/cates",{
                 jsonp:'api',
-            }).then(function(res){
-                this.cates = res.body;
-            });     
+            }).then( (res) => this.cates = res.body);     
         }
     }
 

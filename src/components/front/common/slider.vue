@@ -6,9 +6,9 @@
 	<div class="title">{{ data.title }}</div>
 </li>
 </ul>
-<ol id="slider-control">
+<ol id="control">
 	<li v-for="n in datas.length-1" :class="{active: slider.index==n} ">
-		<a href="#" v-on:click="show(n)">{{ n }}</a>
+		<a v-on:click="show(n)">{{ n }}</a>
 	</li>
 </ol>
 
@@ -26,74 +26,66 @@ export default {
 				transform:0,
 			},
 			slider:{
-				interval:3000,
-				transition:0.5,
+				interval:4000,     // set interval
+				transition:0.5,	//set transtion
 				index:1,
 			},
 			datas:[
 				{title:'QC BLOG —— For Web Technology Share',src:'assets/img/bing-1.jpg'},
 				{title:'Laravel —— 为WEB艺术家创造的PHP框架',src:'assets/img/bing-2.jpg'},
 				{title:'xxxxxxxxxxx',src:'assets/img/bing-3.jpg'}
-			],
+			]
 		
 		}
 	},
 	computed:{
 		realStyle:function(){
 			return {
-				width:this.style.width*4+"px",
+				width:this.style.width*(this.datas.length+1)+"px",
 				transition:this.style.transition+'s',
-				transform:"translate("+this.style.transform+"px)",
-			}
+				transform:"translate("+this.style.transform+"px)"
+			};
 		},
 		liwidth:function(){
-			return this.style.width+"px"
-		},
+			return this.style.width+"px";
+		}
 
 	},
 
 	watch:{
-
-		'slider.index':function(index){		
-			if (index>3) {
-				this.slider.index = 1;			
-				var that = this;
-				setTimeout(function(){		
-					that.style.transition=0;	
-					that.style.transform=0;				
+		'slider.index':function() {
+			if (this.slider.index>=this.datas.length) {
+				this.slider.index = 1;	
+				setTimeout( () => {	
+					this.style.transition=0;
+					this.style.transform=0;		
 				},this.style.transition*1000);
 			}
 		}
 	},
 
 	mounted:function(){
-		this.style.width = this.$el.clientWidth
-		this.datas.push(this.datas[0])					
-		this.play()
-		var that = this
-		window.addEventListener('resize',function(){
-			that.style.width = that.$el.clientWidth
-		})
-
-
+		this.style.width = this.$el.clientWidth;
+		this.datas.push(this.datas[0]);			
+		this.play();
+		addEventListener('resize', () => this.style.width = this.$el.clientWidth);
 	},
 
 	methods:{
-		show:function(id){	
-			this.style.transition=this.slider.transition
-			this.style.transform=-(id-1)*this.style.width
-			this.slider.index=id
+		show(id){	
+			this.style.transition=this.slider.transition;
+			this.style.transform=-(id-1)*this.style.width;
+			this.slider.index=id;
 		},
 
-		play:function(){
-			var that = this;	
-			setInterval(function () {
-				that.slider.index++
-				that.show(that.slider.index)
-			},this.slider.interval);	
+		play(){
+			setInterval( (x=this.slider.index) => {
+				x++;
+				this.show(x);
+			},this.slider.interval);
 		}
 
-	},
+	}
 
 }
 </script>
@@ -107,10 +99,6 @@ export default {
     -webkit-box-sizing: border-box;
 }
 
-body {
-    padding: 20px;
-}
-
 #slider {
     position: relative;
     width: 100%;
@@ -120,7 +108,6 @@ body {
 #list {
     position: relative;
     z-index: 1;
-    width: 400%;
     list-style-type:none;
     overflow: hidden;
 }
@@ -141,7 +128,7 @@ body {
     opacity:0.6;
     position: absolute;
     bottom: 6px;
-    padding: 8px;
+    padding: 6px;
     color: #fff;
     display: block;
     width: 100%;
@@ -151,29 +138,29 @@ body {
     overflow: hidden;
 }
 
-#slider-control {
+#control {
     z-index: 1;
     position: absolute;
     bottom: 0;
     display: table;
     width: 100%;
-    height: 6px;
+    height:6px;
     font-size: 0;
     line-height: 0;
     text-align: center;
 }
 
-#slider-control li{
+#control li{
     display: table-cell;
     background-color: #333;
     width: 1%;
 }
 
-#slider-control .active{
+#control .active{
     background-color: #0e90d2;
 }
 
-#slider-control li a {
+#control li a {
     width: 100%;
     height: 6px;
     display: block;

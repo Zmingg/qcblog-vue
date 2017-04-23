@@ -2,9 +2,9 @@
 <div id="blogs">
     <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 hot-list">
         <li  v-for="blog in blogs">
-            <a :href="blog.id | href(blog.title)">
+            <router-link :to="blog.id | href(blog.title)">
                 <img class="" :src="blog.thumb_img | src" />        
-            </a>
+            </router-link>
             <p class="am-text-truncate">
                {{ blog.title }}
             </p>
@@ -29,7 +29,7 @@ module.exports = {
             return 'http://laravel.cc/'+url;
         },
         href:function(id,title){
-            return 'http://laravel.cc/blog/'+id+'/'+title;
+            return '/blog/'+id+'/'+title;
         }
     },
         

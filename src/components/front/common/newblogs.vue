@@ -8,9 +8,9 @@
 	</div>  
 	<ul class="am-list am-list-border">
 		<li v-for="blog in blogs">
-		<a :href="blog.id | href(blog.title)" class="am-text-truncate">
+		<router-link :to="blog.id | href(blog.title)" class="am-text-truncate">
 			{{blog.title}}
-		</a>
+		</router-link>
 		</li>
 	</ul>
 </div>	
@@ -27,7 +27,7 @@ export default {
 
     filters:{
         href:function(id,title){
-            return 'http://laravel.cc/blog/'+id+'/'+title;
+            return '/blog/'+id+'/'+title;
         }
     },
         
@@ -40,9 +40,7 @@ export default {
             this.$http.jsonp("http://laravel.cc/api/news",{
                 jsonp:'api',
                 params:{ count:6 }
-            }).then(function(res){
-                this.blogs = res.body;
-            });     
+            }).then((res) => this.blogs = res.body);     
         }
     }
 

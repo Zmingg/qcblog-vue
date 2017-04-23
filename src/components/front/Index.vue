@@ -3,14 +3,19 @@
   
     <div class="am-g-fixed">
 
-        <blog-list></blog-list>
+        <div class="am-u-lg-9 ">
+
+                <slider></slider>
+                <hotblogs></hotblogs>
+
+        </div>
 
         <div class="am-u-lg-3 am-show-md-down my-blank"></div> <!-- 侧栏调低 -->
 
         <div class="am-u-lg-3 ">
 
-            <weather>今日天气</weather>
-            <new-blogs></new-blogs>
+            <weather></weather>
+            <newblogs></newblogs>
             <tagcloud></tagcloud>
 
         </div>
@@ -21,16 +26,17 @@
 </template>
 
 <script>
-import BlogList from './common/bloglist.vue'
+import Slider from './common/slider.vue'
+import Hotblogs from './common/hotblogs.vue'
 import Weather from './common/weather.vue'
-import NewBlogs from './common/news.vue'
+import Newblogs from './common/newblogs.vue'
 import Tagcloud from './common/tagcloud.vue'
 
 
 export default  {
 
     components: {
-        BlogList, NewBlogs,Weather,Tagcloud
+        Slider,Hotblogs, Newblogs,Weather,Tagcloud
     },
 }
 </script>

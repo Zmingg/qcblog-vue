@@ -2,7 +2,7 @@
 <div class="am-hide-md-only am-panel am-panel-default list-side">
 
 	<div class="am-panel-hd">
-	<h3 class="am-panel-title"><i class="am-icon-paw am-icon-xs"></i>&nbsp <slot></slot></h3>
+	<h3 class="am-panel-title"><i class="am-icon-paw am-icon-xs"></i>&nbsp 今日天气</h3>
 	</div>
 
 	<main class="am-panel-bd panel-wheather">
