@@ -2,7 +2,7 @@
 <div class="am-hide-md-only am-panel am-panel-default list-side">
 
 	<div class="am-panel-hd">
-	<h3 class="am-panel-title"><i class="am-icon-paw am-icon-xs"></i>&nbsp 今日天气</h3>
+	<h3 class="am-panel-title"><i class="am-icon-paw am-icon-xs"></i>&nbsp <slot></slot></h3>
 	</div>
 
 	<main class="am-panel-bd panel-wheather">
@@ -29,13 +29,13 @@ module.exports = {
         }
     },
         
-    created:function(){
+    mounted:function(){
         this.getdata();
     },
 
     methods:{
         getdata:function(){
-            this.$http.jsonp("http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&dfc=1&charset=utf-8").then(
+            this.$http.jsonp("http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&dfc=1&charset=utf-8",).then(
             	function(){},
             	function(res){
 

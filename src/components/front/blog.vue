@@ -9,7 +9,7 @@
 
         <div class="am-u-lg-3 ">
 
-            <weather></weather>
+            <weather>今日天气</weather>
             <new-blogs></new-blogs>
             <tagcloud></tagcloud>
 

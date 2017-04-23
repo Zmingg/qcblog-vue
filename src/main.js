@@ -3,7 +3,6 @@ import VueRs from 'vue-resource';
 import Index from './components/front/index.vue';
 import VueRouter from 'vue-router'
 import Blog from './components/front/blog.vue';
-
 Vue.use(VueRouter)
 Vue.use(VueRs);
 
