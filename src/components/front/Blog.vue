@@ -7,7 +7,7 @@
 
         <div class="am-u-lg-3 am-show-md-down my-blank"></div> <!-- 侧栏调低 -->
 
-        <div class="am-u-lg-3 ">
+        <div class="am-u-lg-3 am-hide-md-down">
 
             <newblogs></newblogs>
             <tagcloud></tagcloud>

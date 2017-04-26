@@ -52,14 +52,14 @@ module.exports = {
 
 			if (now.getHours()>17||now.getHours()<6) {
 				wea.s = wea.s2;
-				wea.w = wea.d2+' '+wea.p2;
-				wea.img = 'http://php.weather.sina.com.cn/images/yb3/78_78/'+wea.f2+'_1.png';
+				wea.w = wea.d2?(wea.d2+' '+wea.p2):(wea.d1+' '+wea.p1);
+				wea.img = 'http://php.weather.sina.com.cn/images/yb3/78_78/'+(wea.f2?wea.f2:wea.f1)+'_1.png';
 			}else{
 				wea.s = wea.s1;
-				wea.w = wea.d1+' '+wea.p1;
-				wea.img = 'http://php.weather.sina.com.cn/images/yb3/78_78/'+wea.f1+'_0.png';
+				wea.w = wea.d1?(wea.d1+' '+wea.p1):(wea.d2+' '+wea.p2);
+				wea.img = 'http://php.weather.sina.com.cn/images/yb3/78_78/'+(wea.f1?wea.f1:wea.f2)+'_0.png';
 			}
-			wea.t = wea.t2+' ~ '+wea.t1;
+			wea.t = wea.t2+' ~ '+(wea.t1?wea.t1:'27');
 
 			this.weather = wea;
             	});     

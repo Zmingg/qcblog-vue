@@ -65,6 +65,7 @@
         </li>
     </ul>
 
+<a id='more' class="am-text-center blog-more" v-html="more.mes" style="display:block"></a>
 
 </div>
 </div>
@@ -78,6 +79,7 @@ export default {
         return {
             blogs:[],
             cates:[],
+            more:{page:1,hasmore:0,time:0,mes:''},
         }
     },
 
@@ -95,27 +97,57 @@ export default {
 
     watch:{
         '$route':function(){
+            this.blogs=[],
+            this.more={page:1,hasmore:0,time:0,mes:''},
             this.getBlogs();
         }
     },
         
     mounted:function(){
-        this.getBlogs();
         this.getCates();
+        this.getBlogs();    
+        this.more.time = new Date();
+        addEventListener('scroll',( { m=this.more} )=>{
+            let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+
+            if (m.hasmore) {   
+                if (scrollTop>document.body.clientHeight-window.screen.height) {   
+                    let _time = new Date();
+                    if ( (_time-m.time)>2000) {
+                        m.time=_time;
+                        m.mes='<i class="am-icon-spinner am-icon-pulse"></i> Loading...';
+                        setTimeout(this.getBlogs,1000);             
+                    }
+                }           
+            }          
+        });
+
     },
 
     methods:{
         getBlogs:function(){
             this.$http.jsonp("http://zmhjy.xyz/api/blogs",{
                 jsonp:'api',
-                params:Object.assign(this.$route.params,{count:8})
-            }).then( (res) => this.blogs = res.body.data);     
+                params:Object.assign(this.$route.params,{count:4,page:this.more.page})
+            }).then( (res,m=this.more) => {
+                this.blogs.push(...res.body.data); 
+                m.page++;              
+                m.hasmore=res.body.last_page-res.body.current_page; 
+                m.mes=m.hasmore?'--上拉获取更多--':null;   
+            });     
+
         },
         getCates:function(){
             this.$http.jsonp("http://zmhjy.xyz/api/cates",{
                 jsonp:'api',
-            }).then( (res) => this.cates = res.body);     
-        }
+            }).then( res => this.cates = res.body);     
+        },
+        // touchMove:function(){
+        //     addEventListener('mousedown',()=>{
+
+        //     });
+            
+        // }
     }
 
   

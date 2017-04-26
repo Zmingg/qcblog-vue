@@ -104,6 +104,7 @@ hr {
 	margin: 0;
 }
 
+
 .blog-item-meta {
 	position:relative;
 	bottom: 0px;
@@ -112,7 +113,6 @@ hr {
 
 .blog-more {
 	color:#999999;
-	cursor: pointer;
 }
 
 

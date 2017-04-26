@@ -21,7 +21,7 @@ export default {
 	data:function(){
 		return {
 			style:{
-				width:0,
+				width:800,
 				transition:0,
 				transform:0,
 			},
@@ -65,10 +65,11 @@ export default {
 	},
 
 	mounted:function(){
-		this.style.width = this.$el.clientWidth;
-		this.datas.push(this.datas[0]);			
-		this.play();
+		addEventListener('load', () => this.style.width = this.$el.clientWidth);
 		addEventListener('resize', () => this.style.width = this.$el.clientWidth);
+		this.style.width = this.$el.clientWidth;
+		this.datas.push(this.datas[0]);	
+		this.play();
 	},
 
 	methods:{
@@ -94,6 +95,7 @@ export default {
 * {
     margin: 0;
     padding: 0;
+    border: 0;
     text-decoration: none;
     box-sizing:border-box;
     -webkit-box-sizing: border-box;
