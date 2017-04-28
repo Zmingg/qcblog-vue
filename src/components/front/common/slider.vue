@@ -7,27 +7,26 @@
 </li>
 </ul>
 <ol id="control">
-	<li v-for="n in datas.length-1" :class="{active: slider.index==n} ">
+	<li v-for="n in datas.length-2" :class="{active: slider.index==n} ">
 		<a v-on:click="show(n)">{{ n }}</a>
 	</li>
 </ol>
 
 </div>
 </template>
-
-
 <script>
 export default {
 	data:function(){
 		return {
 			style:{
-				width:800,
+				width:1,
 				transition:0,
 				transform:0,
+				left:0,
 			},
 			slider:{
 				interval:4000,     // set interval
-				transition:0.5,	//set transtion
+				transition:650,	//set transtion
 				index:1,
 			},
 			datas:[
@@ -41,9 +40,10 @@ export default {
 	computed:{
 		realStyle:function(){
 			return {
-				width:this.style.width*(this.datas.length+1)+"px",
-				transition:this.style.transition+'s',
-				transform:"translate("+this.style.transform+"px)"
+				width:this.style.width*(this.datas.length+2)+"px",
+				transition:this.style.transition+"ms",
+				transform:"translate("+this.style.transform+"px)",
+				left:this.style.left+'px'
 			};
 		},
 		liwidth:function(){
@@ -53,44 +53,80 @@ export default {
 	},
 
 	watch:{
-		'slider.index':function() {
-			if (this.slider.index>=this.datas.length) {
-				this.slider.index = 1;	
+		'slider.index':function({sld=this.slider,css=this.style}) {
+			if (sld.index>=this.datas.length-1) {
+				sld.index = 1;	
 				setTimeout( () => {	
-					this.style.transition=0;
-					this.style.transform=0;		
-				},this.style.transition*1000);
+					css.transition = 0;
+					css.transform = -css.width;
+				},css.transition);
+			}else if(sld.index<1){
+				sld.index = this.datas.length-2;
+				setTimeout( () => {	
+					css.transition = 0;
+					css.transform = -css.width*sld.index;		
+				},css.transition);
 			}
 		}
 	},
 
-	mounted:function(){
-		addEventListener('load', () => this.style.width = this.$el.clientWidth);
-		addEventListener('resize', () => this.style.width = this.$el.clientWidth);
-		this.style.width = this.$el.clientWidth;
-		this.datas.push(this.datas[0]);	
+	mounted:function(dat=this.datas,css=this.style){
+		addEventListener('resize', () => css.width=this.$el.clientWidth);
+		css.width = this.$el.clientWidth;
+		css.transform = -css.width;
+		dat.unshift(dat[dat.length-1]);	
+		dat.push(dat[1]);		
 		this.play();
+		this.touch();
 	},
 
 	methods:{
 		show(id){	
 			this.style.transition=this.slider.transition;
-			this.style.transform=-(id-1)*this.style.width;
+			this.style.transform=-id*this.style.width;
 			this.slider.index=id;
 		},
 
 		play(){
-			setInterval( (x=this.slider.index) => {
+			this.p = setInterval( (x=this.slider.index) => {
 				x++;
 				this.show(x);
 			},this.slider.interval);
-		}
+		},
 
+		touch(){
+			this.x = 0,
+
+			this.$el.addEventListener('touchstart', evt=>{
+				clearInterval(this.p);
+				let tc = evt.changedTouches[0];
+				this.style.transition=0;		
+				this.x=tc.pageX;
+				this.y=tc.pageY;
+			});
+
+			this.$el.addEventListener('touchmove', evt=>{
+				let tc = evt.changedTouches[0];
+				let transform = -this.style.width*(this.slider.index);
+				let mv  = tc.pageX-this.x;
+				this.style.transform =transform+mv;
+			});
+
+			this.$el.addEventListener('touchend', evt=>{
+				let tc = evt.changedTouches[0];
+				var mv = tc.pageX-this.x;
+				if (Math.abs(mv) >50){
+					this.show(this.slider.index-mv/Math.abs(mv));
+				}
+				this.play();
+			});
+
+			this.$el.addEventListener('touchcancel', evt=> this.x=0);
+		}
 	}
 
 }
 </script>
-
 <style scoped>
 * {
     margin: 0;
@@ -111,7 +147,6 @@ export default {
     position: relative;
     z-index: 1;
     list-style-type:none;
-    overflow: hidden;
 }
 
 #list li {

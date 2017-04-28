@@ -49,8 +49,9 @@ export default {
 	},
 
 	watch:{
-		'$route':function(){
+		'$route.params.id':function(){
 			this.getBlog();
+			scrollTo(0,0)
 		}
 	},
 

@@ -18,7 +18,8 @@
 
 <li v-for="cate in cates" class="active">
     <router-link :to="'/blog/'+cate.alias ">
-    {{cate.name}}
+    <strong v-if="cate.alias==$route.params.cate" >{{cate.name}}</strong>
+    <template v-else>{{cate.name}}</template>
     </router-link>
 </li>
 
@@ -64,6 +65,8 @@
 
         </li>
     </ul>
+
+    
 
 <a id='more' class="am-text-center blog-more" v-html="more.mes" style="display:block"></a>
 
@@ -111,7 +114,7 @@ export default {
             let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 
             if (m.hasmore) {   
-                if (scrollTop>document.body.clientHeight-window.screen.height) {   
+                if (scrollTop>=document.body.clientHeight-window.screen.height) {   
                     let _time = new Date();
                     if ( (_time-m.time)>2000) {
                         m.time=_time;
@@ -142,12 +145,7 @@ export default {
                 jsonp:'api',
             }).then( res => this.cates = res.body);     
         },
-        // touchMove:function(){
-        //     addEventListener('mousedown',()=>{
 
-        //     });
-            
-        // }
     }
 
   

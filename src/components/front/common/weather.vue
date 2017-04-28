@@ -13,7 +13,7 @@
 			<span>{{weather.city}}</span> 
 			<span>{{weather.s}}</span><br>
 			<span>{{weather.t}} ℃</span><br>
-			<span>{{weather.w}} 级</span>
+			<span>{{weather.w}}</span>
 		</div>
 	</main>
 	

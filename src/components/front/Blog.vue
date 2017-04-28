@@ -16,6 +16,9 @@
 
     </div>
 
+    <gotop></gotop>
+
+
 </div>
 </template>
 
@@ -24,12 +27,12 @@ import BlogList from './common/blog.list.vue'
 import Weather from './common/weather.vue'
 import Newblogs from './common/newblogs.vue'
 import Tagcloud from './common/tagcloud.vue'
-
+import Gotop from './common/gotop.vue'
 
 export default  {
 
     components: {
-        BlogList, Newblogs,Weather,Tagcloud
+        BlogList, Newblogs,Weather,Tagcloud,Gotop
     },
 }
 </script>
