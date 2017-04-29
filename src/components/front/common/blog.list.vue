@@ -131,7 +131,7 @@ export default {
         getBlogs:function(){
             this.$http.jsonp("http://zmhjy.xyz/api/blogs",{
                 jsonp:'api',
-                params:Object.assign(this.$route.params,{count:4,page:this.more.page})
+                params:Object.assign(this.$route.params,{count:5,page:this.more.page})
             }).then( (res,m=this.more) => {
                 this.blogs.push(...res.body.data); 
                 m.page++;              

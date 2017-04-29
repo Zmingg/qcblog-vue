@@ -4,9 +4,9 @@
         <div class="am-hide-sm my-bread-panel am-panel am-panel-default">
           <div class="am-panel-bd">
             <ol class="am-breadcrumb">
-              <li><i class="am-icon-home am-icon-xs">&nbsp  </i><a href="">首页</a></li>
-              <li><a href="">文章</a></li>
-              <li><a href="">{{blog.cate.name}}</a></li>
+              <li><i class="am-icon-home am-icon-xs">&nbsp  </i><router-link to="/">首页</router-link></li>
+              <li><router-link to="/blog">文章</router-link></li>
+              <li><router-link :to="'/blog/'+blog.cate.alias">{{blog.cate.name}}</router-link></li>
               <li class="am-active">{{blog.title}}</li>
             </ol>
           </div>
@@ -19,7 +19,9 @@
             <p>
               <i class="am-icon-tags am-icon-xs"></i>&nbsp&nbsp
 
-              <a v-for="atag in blog.tagsarr" href='' >{{atag}}&nbsp</a>&nbsp
+              <router-link :to="'/blog/search/'+atag " v-for="atag in blog.tagsarr" :key="atag">
+              {{atag}}&nbsp
+              </router-link>&nbsp
 
               &nbsp&nbsp&nbsp
               <i class="am-icon-user am-icon-xs"></i>&nbsp&nbsp{{blog.user.nickname}}

@@ -1,14 +1,14 @@
-import Vue from 'vue/dist/vue.esm.js';
-import VueRs from 'vue-resource';
-import Index from './components/front/Index.vue';
-import VueRouter from 'vue-router'
-import Blog from './components/front/Blog.vue';
-import BlogShow from './components/front/BlogShow.vue';
+// import Vue from 'vue/dist/vue.esm.js';
+// import VueRs from 'vue-resource';
+// import VueRouter from 'vue-router';
+// Vue.use(VueRouter)
+// Vue.use(VueResource);
 import 'babel-runtime/core-js/promise';
 import 'babel-polyfill';
-
-Vue.use(VueRouter)
-Vue.use(VueRs);
+import Index from './components/front/Index.vue';
+import Blog from './components/front/Blog.vue';
+import BlogShow from './components/front/BlogShow.vue';
+import App from './app.vue'
 
 const router = new VueRouter({
 	// mode:'history',
@@ -20,6 +20,10 @@ const router = new VueRouter({
 	]
 });
 
+
+
 const app = new Vue({
-  router
+  router,
+  components:{'app':App}
+
 }).$mount('#app');

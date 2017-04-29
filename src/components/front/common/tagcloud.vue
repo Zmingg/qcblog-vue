@@ -32,7 +32,7 @@ module.exports = {
     	gettags:function(){
     		this.$http.jsonp("http://zmhjy.xyz/api/tags",{
 	                jsonp:'api',
-	                params:{count:12}
+	                params:{count:15}
 		}).then(function(res){
 			this.tags = res.body;
 			var fontStyle=["danger","info","warning","primary","success"];

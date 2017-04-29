@@ -11,7 +11,6 @@
 		<a v-on:click="show(n)">{{ n }}</a>
 	</li>
 </ol>
-
 </div>
 </template>
 <script>
@@ -32,7 +31,7 @@ export default {
 			datas:[
 				{title:'QC BLOG —— For Web Technology Share',src:'assets/img/bing-1.jpg'},
 				{title:'Laravel —— 为WEB艺术家创造的PHP框架',src:'assets/img/bing-2.jpg'},
-				{title:'xxxxxxxxxxx',src:'assets/img/bing-3.jpg'}
+				{title:'Vue.Js 2.0 渐进式JavaScript 框架',src:'assets/img/bing-3.jpg'}
 			]
 		
 		}
@@ -117,6 +116,8 @@ export default {
 				var mv = tc.pageX-this.x;
 				if (Math.abs(mv) >50){
 					this.show(this.slider.index-mv/Math.abs(mv));
+				}else{
+					this.show(this.slider.index);
 				}
 				this.play();
 			});

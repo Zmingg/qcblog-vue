@@ -21,7 +21,6 @@
         </div>
 
     </div>
-
 </div>
 </template>
 
@@ -31,7 +30,6 @@ import Hotblogs from './common/hotblogs.vue'
 import Weather from './common/weather.vue'
 import Newblogs from './common/newblogs.vue'
 import Tagcloud from './common/tagcloud.vue'
-
 
 export default  {
 
