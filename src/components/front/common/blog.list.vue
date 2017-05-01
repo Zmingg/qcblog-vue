@@ -17,7 +17,7 @@
 <ol class="am-breadcrumb am-breadcrumb-slash">
 
 <li v-for="cate in cates" class="active">
-    <router-link :to="'/blog/'+cate.alias ">
+    <router-link :to="'/blog/'+cate.alias">
     <strong v-if="cate.alias==$route.params.cate" >{{cate.name}}</strong>
     <template v-else>{{cate.name}}</template>
     </router-link>
@@ -53,7 +53,7 @@
             <div class="am-list-item-text am-hide-sm-down blog-item-meta">
             <i class="am-icon-tags am-icon-xs"></i>&nbsp
 
-            <router-link :to="'/blog/search/'+tag " v-for="(tag,index) in blog.tagsarr" :key="index" class="blog-item-tags">
+            <router-link :to="'/blog/search/'+tag" v-for="(tag,index) in blog.tagsarr" :key="index" class="blog-item-tags">
             {{tag}}&nbsp
             </router-link>
             &nbsp&nbsp
@@ -83,6 +83,8 @@ export default {
             blogs:[],
             cates:[],
             more:{page:1,hasmore:0,time:0,mes:''},
+            params:{},
+
         }
     },
 
@@ -102,8 +104,17 @@ export default {
         '$route':function(){
             this.blogs=[],
             this.more={page:1,hasmore:0,time:0,mes:''},
-            this.getBlogs();
+            this.getBlogs(); 
         }
+        // 'params':{
+        //     handler:function(){
+        //         this.blogs=[],
+        //         this.more={page:1,hasmore:0,time:0,mes:''},
+        //         this.getBlogs(); 
+        //     },
+        //     deep:true,         
+        // },
+
     },
         
     mounted:function(){
@@ -128,6 +139,7 @@ export default {
     },
 
     methods:{
+
         getBlogs:function(){
             this.$http.jsonp("http://zmhjy.xyz/api/blogs",{
                 jsonp:'api',
@@ -145,9 +157,19 @@ export default {
                 jsonp:'api',
             }).then( res => this.cates = res.body);     
         },
+        // search:function(param,val){           
+        //     this.params={};
+        //     this.$set(this.params,param,val);  
+        // }
+
 
     }
 
   
 }
 </script>
+<style scoped>
+a {
+    cursor: pointer;
+}
+</style>
