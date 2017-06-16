@@ -15,13 +15,26 @@ module.exports = {
 			{test: /\.css$/,loader: 'style-loader!css-loader?modules&localIdentName=[name]_[local]_[hash:base64:5]'},
 			{test: /\.vue$/,loader: "vue-loader"},
 			{test: /\.(gif|jpg|png|woff|woff2|svg|eot|ttf|otf)$/, loader: 'url-loader?limit=50000&name=/assets/[name].[ext]'},
-			{ test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader'},
+			{test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader'},
 		]
 	},
 
 	externals: {
 		Vue: "Vue",
 	},
+
+	plugins:[
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production'),
+			}
+		}),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			}
+		}),
+	],
 
 	devServer: {
 		port:8725,

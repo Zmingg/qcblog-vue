@@ -32,15 +32,15 @@
 
 
     <ul class="am-list">
-        <li  v-for="blog in blogs" class="am-g am-list-item-thumbed blog-item">
+        <li  v-for="blog in blogs" class="blog-item">
 
-        <div class="am-u-sm-5 am-u-md-4 am-u-lg-4 am-item-thumb">
+        <div class="am-u-sm-5 am-u-md-4 am-u-lg-4 blog-item-thumb">
         <router-link :to=" blog.id | href(blog.title) ">
             <img :src=" blog.thumb_img | src " alt=""/>
         </router-link>
         </div>
 
-        <div class=" am-u-sm-7 am-u-md-8 am-u-lg-8 am-list-main">
+        <div class=" am-u-sm-7 am-u-md-8 am-u-lg-8 blog-item-main">
 
             <h2 class="am-list-item-hd blog-item-title">
             <router-link :to=" blog.id | href(blog.title) ">
