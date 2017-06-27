@@ -1,45 +1,92 @@
-var webpack = require("webpack");
+const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
-	devtool: false,
-	entry:  __dirname + "/src/main.js",
-	output: {
-		path: __dirname + "/public",
-		filename: "index.js",
-	},
+    devtool: false,
 
-	module: {
+    entry:  {
+        index: __dirname + "/src/main.js",
+    },
 
-		loaders: [
-			{test: /\.js$/,loader: 'babel-loader?presets=es2015&plugins=transform-runtime',exclude: /node_modules/},
-			{test: /\.json$/,loader: "json-loader"},
-			{test: /\.css$/,loader: 'style-loader!css-loader?modules&localIdentName=[name]_[local]_[hash:base64:5]'},
-			{test: /\.vue$/,loader: "vue-loader"},
-			{test: /\.(gif|jpg|png|woff|woff2|svg|eot|ttf|otf)$/, loader: 'url-loader?limit=50000&name=/assets/[name].[ext]'},
-			{test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader'},
-		]
-	},
+    output: {
+        path: __dirname + "/public",
+        filename: "[name].js",
+    },
 
-	externals: {
-		Vue: "Vue",
-	},
+    module: {
+        rules: [
+            {
+                test: /\.(js)$/,
+                loader: "babel-loader",
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            localIdentName: "[name]_[local]_[hash:base64:5]"
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    use: [{
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]-[local]-[hash:base64:5]'
+                        }
+                    }, {
+                        loader: "sass-loader"
+                    }],
+                    fallback: "style-loader"
+                })
+            },
+            {
+                test: /\.vue$/,
+                loader: "vue-loader"
+            },
+            {
+                test: /\.(gif|jpg|png|woff|woff2|svg|eot|ttf|otf)$/, 
+                loader: "url-loader",
+                options: {
+                    limit: 50000,
+                    name: '/assets/[name].[ext]',
+                }
+            },
+        ]
+    },
 
-	plugins:[
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: JSON.stringify('production'),
-			}
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false
-			}
-		}),
-	],
+    externals: {
+        Vue: "Vue",
+        Vuex: "Vuex",
+    },
 
-	devServer: {
-		port:8725,
-		contentBase: "./public",
-		historyApiFallback: true,
-		inline: true
-	}
+    plugins:[
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development'),
+             }
+        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
+        new ExtractTextPlugin("assets/css/styles.css"),
+    ],
+
+    devServer: {
+        port:8725,
+        contentBase: "./public",
+        disableHostCheck: true,
+        historyApiFallback: true,
+        inline: true
+    }
 }
