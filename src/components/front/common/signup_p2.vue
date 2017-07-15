@@ -14,7 +14,7 @@
 				<input type="password" maxlength="20" name="repassword" class="am-form-field" placeholder="Password Again" v-model.lazy="user.repass"/>
 			</div>
 			<div style="text-align:center;">
-				<a @click="submit" class="am-btn am-btn-success" type="button">确认注册</a>
+				<button @click="submit" class="am-btn am-btn-success" type="button">确认注册</button>
 			</div>
 		</div>
 	</transition>

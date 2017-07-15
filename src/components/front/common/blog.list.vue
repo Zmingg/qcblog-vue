@@ -106,15 +106,6 @@ export default {
             this.more={page:1,hasmore:0,time:0,mes:''},
             this.getBlogs(); 
         }
-        // 'params':{
-        //     handler:function(){
-        //         this.blogs=[],
-        //         this.more={page:1,hasmore:0,time:0,mes:''},
-        //         this.getBlogs(); 
-        //     },
-        //     deep:true,         
-        // },
-
     },
         
     mounted:function(){
@@ -123,7 +114,6 @@ export default {
         this.more.time = new Date();
         addEventListener('scroll',( { m=this.more} )=>{
             let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-
             if (m.hasmore) {   
                 if (scrollTop>=document.body.clientHeight-window.screen.height) {   
                     let _time = new Date();
@@ -140,7 +130,7 @@ export default {
 
     methods:{
 
-        getBlogs:function(){
+        getBlogs: function(){
             this.$http.jsonp("http://zmhjy.xyz/api/blogs",{
                 jsonp:'api',
                 params:Object.assign(this.$route.params,{count:5,page:this.more.page})
@@ -152,16 +142,11 @@ export default {
             });     
 
         },
-        getCates:function(){
+        getCates: function(){
             this.$http.jsonp("http://zmhjy.xyz/api/cates",{
                 jsonp:'api',
             }).then( res => this.cates = res.body);     
         },
-        // search:function(param,val){           
-        //     this.params={};
-        //     this.$set(this.params,param,val);  
-        // }
-
 
     }
 

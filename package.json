@@ -16,6 +16,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.0",
     "file-loader": "^0.11.1",
+    "jasmine": "^2.6.0",
     "jquery": "^3.2.1",
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.2",
@@ -43,6 +44,7 @@
   "scripts": {
     "pack": "webpack",
     "start": "webpack-dev-server  --inline --host 0.0.0.0",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jasmine":"jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json"
   }
 }

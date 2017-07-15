@@ -1,8 +1,9 @@
 <template>
 	<div style="max-width:400px;margin:0 auto;">
-		
-		<!-- <Signin></Signin> -->
-		<Signup></Signup>
+		<componet :is="currentView" >
+			<button slot="goSignUp" @click="goSignUp" class="am-btn am-btn-warning" type="button">注册新用户</button>
+			<button slot="goSignIn" @click="goSignIn" class="am-btn am-btn-success" type="button">返回登录</button>
+		</componet>
 	</div>
 	
 </template>
@@ -16,9 +17,16 @@ export default {
 
 	data: function(){
 		return {
-			username: '',
-			phone: null,
-			password: null,
+			currentView: Signin
+		}
+	},
+
+	methods: {
+		goSignUp:function(){
+			this.currentView = Signup;
+		},
+		goSignIn:function(){
+			this.currentView = Signin;
 		}
 	}
 }

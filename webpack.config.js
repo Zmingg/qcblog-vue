@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -11,6 +12,13 @@ module.exports = {
     output: {
         path: __dirname + "/public",
         filename: "[name].js",
+    },
+
+    resolve: {
+        alias: {
+            Lib: path.resolve(__dirname, 'src/lib/'),
+        },
+
     },
 
     module: {

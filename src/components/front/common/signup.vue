@@ -7,6 +7,7 @@
 			:errors="errors" 
 			:places="messages"
 			:submit="submit">
+			<slot name="goSignIn"></slot>
 		</component>
 		
 	</div>
@@ -50,10 +51,6 @@ export default {
 				this.errors.code = false;
 			}
 		}
-	},
-
-	computed: {
-
 	},
 	
 	methods:{

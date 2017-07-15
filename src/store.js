@@ -26,19 +26,24 @@ export default  new Vuex.Store({
 	},
 	actions: {
 		async login({ commit,dispatch },user){
-			
+			let res = {};
 			if (typeof localStorage.token == 'undefined'|| localStorage.token=='') {
-				await applyToken(user);
+				res = await applyToken(user)
 			} else {
-				console.log('refreshToken')
-				await refreshToken();
+				res = await refreshToken();
 			}
-		    if(await checkUser()){
-		    	commit('signin');
-		    	router.push('/');
-		    }
-		    
+			if (res.ok) {
+				try {
+					res = await checkUser();
+					commit('signin');
+		    		router.push('/');
+				} catch(e){
+					res = e;
+				}
+			}
+			return res;
 		},
+
 		async checkSignin({ commit }){
 			if (localStorage.isLogin=='true') {
 				if(await checkUser){
@@ -48,18 +53,19 @@ export default  new Vuex.Store({
 				}
 			}
 		},
+
 		logout({ commit }){
 			commit('signout');
 		},
 
-		registerCode({commit},email){
+		registerCode({},email){
 			if (validator.isEmail(email)){
 				return registerCode(email);
 			} else {
 				return {message:'Not a email'};
 			}	
 		},
-		regCdCheck({commit},register){
+		regCdCheck({},register){
 
 			if (!validator.isEmail(register.email)) {
 				return { type:'email',message:'Not a email' };
@@ -68,17 +74,15 @@ export default  new Vuex.Store({
 			} else {
 				return regCdCheck(register.email,register.code);
 			}
-			
 		},
 
-		async signUp({commit,dispatch},register){
+		async signUp({dispatch},register){
 			let res = await signUp(register);
 			if (res.ok) {
 				await dispatch('login',register)
 				router.push('/');
 			}
 		}
-
-
 	}
+	
 })

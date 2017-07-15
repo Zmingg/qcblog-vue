@@ -1,36 +1,64 @@
 import 'fetch-polyfill';
 
-export async function applyToken(user){
-		let data = new FormData();
-		data.append('grant_type', 'password');
-		data.append('client_id', 4);
-		data.append('client_secret', 'VUwJC96Fop7g6nc60HoeC7SoNmHMmNgyzXB5aNCl');
-		data.append('username', user.email);
-		data.append('password', user.pass);
-		let res = await fetch('http://laravel.cc/oauth/token',{
-			method: 'post',
-			body: data,
-		});
-		if (res.status==200) {
-			var json = await res.json()
-			localStorage.token=JSON.stringify(json);
-		} else {
-			return res.statusText;
+export function xfetch(url,params={}){
+	return new Promise(async function(resolve,reject){
+		let body = new FormData();
+		let headers = new Headers();
+		if (params.body) {
+			for(let i in params.body){
+				body.append(i,params.body[i]);
+			}
+		} 
+		if (params.headers) {
+			for(let i in params.headers){
+				headers.append(i,params.headers[i]);
+			}
 		}
+		let res = await fetch(url,{
+			method: params.method?params.method:'get',
+			body: params.body?body:null,
+			headers: params.headers?headers:null
+		});
+		if (res.ok) {
+			resolve(res);
+		} else {
+			reject(res);
+		}
+	})
+}
+
+export async function applyToken(user){
+	try {
+		let res = await xfetch('http://zmhjy.xyz/oauth/token',{
+			method:'post',
+			body:{
+				grant_type: 'password',
+				client_id: 4,
+				client_secret: 'VUwJC96Fop7g6nc60HoeC7SoNmHMmNgyzXB5aNCl',
+				username: user.email,
+				password: user.pass,
+			}
+		})
+		let json = await res.json()
+		localStorage.token=JSON.stringify(json);
+		return  { ok:true };
+	} catch(e) {
+		return { ok:false,message:'用户名密码错误' };
+	}	
 }
 
 export async function refreshToken(){
 		let refresh_token = JSON.parse(localStorage.token).refresh_token;
-		let data = new FormData();
-		data.append('grant_type', 'refresh_token');
-		data.append('refresh_token', refresh_token);
-		data.append('client_id', 4);
-		data.append('client_secret', 'VUwJC96Fop7g6nc60HoeC7SoNmHMmNgyzXB5aNCl');
-		let res = await fetch('http://laravel.cc/oauth/token',{
+		let res = await xfetch('http://zmhjy.xyz/oauth/token',{
 			method: 'post',
-			body: data,
+			body: {
+				grant_type: 'refresh_token',
+				refresh_token: refresh_token,
+				client_id: 4,
+				client_secret: 'VUwJC96Fop7g6nc60HoeC7SoNmHMmNgyzXB5aNCl',
+			},
 		});
-		if (res.status==200) {
+		if (res.ok) {
 			var json = await res.json()
 			localStorage.token=JSON.stringify(json);
 		} else {
@@ -40,57 +68,55 @@ export async function refreshToken(){
 
 export async function checkUser(){
 	if(localStorage.token){
-		let token = JSON.parse(localStorage.token)
-		let auth_token = token.token_type+' '+token.access_token;
-		let headers = new Headers();
-		headers.append("Accept", "application/json")
-		headers.append('Authorization', auth_token)
-		let res = await fetch('http://laravel.cc/api/user',{
-			headers: headers
-		})
-		let json = await res.json();
-		if (json.id) {
-			localStorage.user = JSON.stringify(json);
-			return true;
-		}else{
+		try {
+			let token = JSON.parse(localStorage.token);
+			let auth_token = token.token_type+' '+token.access_token;
+			let res = await xfetch('http://zmhjy.xyz/api/user',{
+				headers: {
+					Accept: "application/json",
+					Authorization: auth_token
+				}
+			})
+			let json = await res.json();
+			localStorage.user=JSON.stringify(json);
+			return {ok:true};
+		} catch(e) {
 			localStorage.user = '';
 			localStorage.token = '';
-			return false;
+			return {ok:false,error:'用户信息获取失败'};
 		}
 	}
 }
 
 export async function registerCode(email){
-	let data = new FormData();
-	data.append('email', email);
-	let res = await fetch('http://laravel.cc/api/registerCode',{
+	let res = await xfetch('http://zmhjy.xyz/api/registerCode',{
 		method: 'post',
-		body: data,
+		body: { email:email },
 	});
 	let json = await res.json();
 	return json;
 }
 
 export async function regCdCheck(email,code){
-	let data = new FormData();
-	data.append('email', email);
-	data.append('code', code);
-	let res = await fetch('http://laravel.cc/api/codeCheck',{
+	let res = await xfetch('http://zmhjy.xyz/api/codeCheck',{
 		method: 'post',
-		body: data,
+		body: {
+			email: email,
+			code: code,
+		},
 	});
 	let json = await res.json();
 	return json;
 }
 
 export async function signUp(register){
-	let data = new FormData();
-	data.append('email', register.email);
-	data.append('code', register.code);
-	data.append('password', register.pass);
-	let res = await fetch('http://laravel.cc/api/signup',{
+	let res = await fetch('http://zmhjy.xyz/api/signup',{
 		method: 'post',
-		body: data,
+		body: {
+			email: register.email,
+			code: register.code,
+			password: register.pass,
+		},
 	});
 	let json = await res.json();
 	return json;

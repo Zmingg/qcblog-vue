@@ -55,7 +55,6 @@
 
 <div id="container" class="am-container" :class="{ active: isActive }">
 
-<!-- Router -->
 <router-view></router-view>
 <br>
 
@@ -71,6 +70,7 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
+import { xfetch } from './api/api'
 export default  {
 
     data:function(){
@@ -106,14 +106,16 @@ export default  {
         ...mapActions([
             'checkSignin','logout'
         ]),
-    	toggleCanvas:function(){
-    		this.isActive=!this.isActive;
-    	},
-    	getCates:function(){
-            this.$http.jsonp("http://laravel.cc/api/cates",{
-                jsonp:'api',
-            }).then( res => this.cates = res.body);     
-        },
+      	toggleCanvas:function(){
+      		this.isActive=!this.isActive;
+      	},
+      	getCates:function(){   
+           xfetch("http://laravel.cc/api/cates")
+	           .then(res=>res.json())
+	           .then(json=>{
+	              this.cates = json;
+	           })
+       },
 
     }
 }

@@ -1,24 +1,14 @@
 <template>
 <div class="am-g am-g-fixed"> 
-  
     <div class="am-g-fixed">
-
         <blog-list></blog-list>
-
         <div class="am-u-lg-3 am-show-md-down my-blank"></div> <!-- 侧栏调低 -->
-
         <div class="am-u-lg-3 am-hide-md-down">
-
             <newblogs></newblogs>
             <tagcloud></tagcloud>
-
         </div>
-
     </div>
-
     <gotop></gotop>
-
-
 </div>
 </template>
 
@@ -30,7 +20,6 @@ import Tagcloud from './common/tagcloud.vue'
 import Gotop from './common/gotop.vue'
 
 export default  {
-
     components: {
         BlogList, Newblogs,Weather,Tagcloud,Gotop
     },

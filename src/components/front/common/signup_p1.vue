@@ -13,7 +13,8 @@
         		</span>
             </div>
 			<div style="text-align:center;">
-				<a v-on:click="next" class="am-btn am-btn-success" type="button">下一步</a>
+				<button v-on:click="next" class="am-btn am-btn-warning" type="button">下一步</button>
+				<slot></slot>
 			</div>
 		</div>
 	</transition>
