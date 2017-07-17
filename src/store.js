@@ -2,8 +2,8 @@ import Vue from 'vue/dist/vue.js';
 import Vuex from 'vuex';
 import { applyToken,refreshToken,checkUser,deleteToken,registerCode,regCdCheck,signUp } from './api/api';
 import router from './router';
-Vue.use(Vuex);
 import validator from 'validator';
+Vue.use(Vuex);
 
 export default  new Vuex.Store({
 	state: {
@@ -25,7 +25,7 @@ export default  new Vuex.Store({
 
 	},
 	actions: {
-		async login({ commit,dispatch },user){
+		async login({ commit, dispatch },user){
 			let res = {};
 			if (typeof localStorage.token == 'undefined'|| localStorage.token=='') {
 				res = await applyToken(user)
@@ -45,7 +45,7 @@ export default  new Vuex.Store({
 		},
 
 		async checkSignin({ commit }){
-			if (localStorage.isLogin=='true') {
+			if (localStorage.isLogin==='true') {
 				if(await checkUser){
 					commit('signin');
 				} else {

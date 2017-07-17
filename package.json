@@ -23,7 +23,7 @@
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
-    "validator": "^7.1.0",
+    "validator": "^7.2.0",
     "vue": "^2.3.4",
     "vue-cli": "^2.8.1",
     "vue-devtools": "^3.1.2",
@@ -45,6 +45,6 @@
     "pack": "webpack",
     "start": "webpack-dev-server  --inline --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "jasmine":"jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json"
+    "jasmine": "jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json"
   }
 }

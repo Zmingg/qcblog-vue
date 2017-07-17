@@ -1,24 +1,34 @@
 import 'fetch-polyfill';
 
-export function xfetch(url,params={}){
+export const xfetch = function(url,params){
 	return new Promise(async function(resolve,reject){
-		let body = new FormData();
-		let headers = new Headers();
-		if (params.body) {
+		let _pa = {};
+		_pa['body'] = new FormData();
+        _pa['headers'] = new Headers();
+
+        if (!params) { return; }
+
+        if (typeof params.method === 'string') {
+            _pa['method'] = params.method;
+        }
+        if (typeof params.headers === 'object') {
+            for(let i in params.headers){
+                _pa['headers'].append(i,params.headers[i]);
+            }
+        }
+		if (typeof params.body === 'object') {
 			for(let i in params.body){
-				body.append(i,params.body[i]);
-			}
-		} 
-		if (params.headers) {
-			for(let i in params.headers){
-				headers.append(i,params.headers[i]);
+                _pa['body'].append(i,params.body[i]);
 			}
 		}
-		let res = await fetch(url,{
-			method: params.method?params.method:'get',
-			body: params.body?body:null,
-			headers: params.headers?headers:null
-		});
+
+		let _params = {};
+		for (let key of Object.keys(params)){
+        	_params[key] = _pa[key];
+		}
+
+
+		let res = await fetch(url, _params);
 		if (res.ok) {
 			resolve(res);
 		} else {
@@ -67,6 +77,7 @@ export async function refreshToken(){
 }
 
 export async function checkUser(){
+
 	if(localStorage.token){
 		try {
 			let token = JSON.parse(localStorage.token);
