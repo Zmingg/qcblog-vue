@@ -6,17 +6,17 @@ module.exports = {
 
     entry:  {
         index: __dirname + "/src/main.js",
-        // vendor: ['vue/dist/vue.js','vue-router','vuex','vue-resource'],
+        vendor: ['vue/dist/vue.js','vue-router','vuex','vue-resource'],
     },
 
     output: {
         path: __dirname + "/app",
-        filename: "[name].js",
-        publicPath: "/app/"
+        filename: "[name].js"
     },
 
     resolve: {
         alias: {
+            'vue$': 'vue/dist/vue.js',
             Lib: path.resolve(__dirname, 'src/lib/'),
         },
 
@@ -76,21 +76,21 @@ module.exports = {
     plugins:[
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production'),
+                NODE_ENV: JSON.stringify('development'),
              }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
         new ExtractTextPlugin("assets/css/styles.css"),
+        new webpack.HotModuleReplacementPlugin(),
     ],
 
     devServer: {
         port:8725,
-        contentBase: "./app",
-        compress: true,
+        publicPath: '/app/',
         inline: true,
         hot:true,
         historyApiFallback: true,

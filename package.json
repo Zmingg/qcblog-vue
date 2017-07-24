@@ -44,6 +44,7 @@
   "scripts": {
     "pack": "webpack",
     "start": "webpack-dev-server  --inline --host 0.0.0.0",
+    "dev": "webpack-dev-server  --inline --host 0.0.0.0 --config webpack.dev.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "jasmine": "jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json"
   }

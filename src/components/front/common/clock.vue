@@ -11,7 +11,7 @@
 </div>
 </template>
 <script>
-import { Clock } from 'Lib/canvas.js';
+import { Clock } from 'Lib/clock.js';
 export default{
 	mounted:function(){	
 		let canvas = document.querySelector('canvas');
@@ -24,7 +24,7 @@ export default{
 		width: 100%;
 	}
 	.clock {
-		width: 85%;
+		width: 100%;
 		margin: 0 auto 10px auto;
 	}
 </style>

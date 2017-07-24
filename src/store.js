@@ -1,11 +1,12 @@
-import Vue from 'vue/dist/vue.js';
-import Vuex from 'vuex';
+// import Vue from 'vue';
+// import Vuex from 'vuex';
+// Vue.use(Vuex);
 import { applyToken,refreshToken,checkUser,deleteToken,registerCode,regCdCheck,signUp } from './api/api';
 import router from './router';
 import validator from 'validator';
-Vue.use(Vuex);
 
-export default  new Vuex.Store({
+
+export default new Vuex.Store({
 	state: {
 		isLogin: false,
 		user: {email:''},

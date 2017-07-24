@@ -1,11 +1,13 @@
-import Vue from 'vue/dist/vue.js';
-import VueResource from 'vue-resource';
+// import Vue from 'vue';
+// import VueResource from 'vue-resource';
+// Vue.use(VueResource);
 import 'babel-runtime/core-js/promise';
 import 'babel-polyfill';
+
+import store from './store.js';
+import router from './router.js';
 import App from './app.vue'
-Vue.use(VueResource);
-import store from './store';
-import router from './router';
+
 
 const app = new Vue({
   router,
