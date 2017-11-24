@@ -90,9 +90,11 @@ module.exports = {
 
     devServer: {
         port:8725,
+        host:  '0.0.0.0',
         publicPath: '/app/',
         inline: true,
-        hot:true,
+        hot: true,
+        hotOnly: true,
         historyApiFallback: true,
         disableHostCheck: true
     }
