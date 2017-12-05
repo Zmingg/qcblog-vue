@@ -6,10 +6,8 @@ import Blog from './components/front/Blog.vue';
 import BlogShow from './components/front/BlogShow.vue';
 import Passport from './components/front/Passport.vue';
 
-
-
 export default new VueRouter({
-    // mode:'history',
+    mode:'history',
     routes:[
         { path: '/', component: Index },
         { path: '/blog/:cate?', component: Blog },

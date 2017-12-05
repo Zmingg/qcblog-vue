@@ -69,7 +69,7 @@ export async function refreshToken(){
 			},
 		});
 		if (res.ok) {
-			var json = await res.json()
+			let json = await res.json()
 			localStorage.token=JSON.stringify(json);
 		} else {
 			return res.statusText;
