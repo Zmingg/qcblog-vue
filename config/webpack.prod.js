@@ -5,7 +5,12 @@ const webpack = require('webpack');
 module.exports = merge(common, {
     plugins:[
         new webpack.DefinePlugin({
-            PRODUCTION: JSON.stringify(false),
+            PRODUCTION: JSON.stringify(true),
+        }),
+        new HtmlWebpackPlugin({
+            title: 'QcManage - Blog',
+            filename: 'index.html',
+            template: 'src/index.html'
         }),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor'],

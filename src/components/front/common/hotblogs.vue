@@ -1,28 +1,25 @@
 <template>
-<div id="blogs">
-    <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 hot-list">
-        <li  v-for="blog in blogs">
-            <router-link :to="blog.id | href(blog.title)">
-                <img class="" :src="blog.thumb_img | src" />        
-            </router-link>
-            <p class="am-text-truncate">
-               {{ blog.title }}
-            </p>
-        </li>
-    </ul>
-</div>
+    <div class="hot-blog">
+        <ul class="hot-list">
+            <li class="item" v-for="blog in blogs">
+                <span class="warp"></span>
+                <img :src="blog.thumb_img | src" />
+                <span class="text">
+                    {{ blog.title }}
+                </span>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
-module.exports = {
+export default {
 
     data:function(){
         return {
             blogs:[],
         }
     },
-
-
 
     filters:{
         src:function(url){
@@ -47,7 +44,67 @@ module.exports = {
             });     
         }
     }
-
-  
 }
 </script>
+<style scoped="scss">
+.hot-blog {
+    width: 100%;
+    overflow: hidden;
+}
+.warp {
+    position: absolute;
+    top: 0;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    opacity: 0;
+    transition: 0.5s;
+}
+.warp:hover {
+    opacity: 0.5;
+}
+.hot-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: hidden;
+}
+.item {
+    position: relative;
+    width: calc((100% - 15px)/4);
+    margin-bottom: 10px;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.item:nth-child(4n+1),
+.item:nth-child(4n+3){
+    margin-right: 5px;
+}
+
+.text {
+    display: inline-block;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    background: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    font-size: 15px;
+    color: #575757;
+    padding: 0 5px;
+}
+@media screen and (max-width: 700px) {
+    .item {
+        width: calc((100% - 5px)/2);
+    }
+}
+@media screen and (min-width: 701px) {
+    .item:nth-child(4n+2){
+        margin-right: 5px;
+    }
+}
+</style>

@@ -1,6 +1,6 @@
-// import Vue from 'vue';
-// import Vuex from 'vuex';
-// Vue.use(Vuex);
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
 import { applyToken,refreshToken,checkUser,deleteToken,registerCode,regCdCheck,signUp } from './api/api';
 import router from './router';
 import validator from 'validator';
@@ -46,7 +46,7 @@ export default new Vuex.Store({
 		},
 
 		async checkSignin({ commit }){
-			if (localStorage.isLogin==='true') {
+			if (localStorage.isLogin&&localStorage.isLogin==='true') {
 				if(await checkUser){
 					commit('signin');
 				} else {

@@ -3432,7 +3432,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _DOMReady = true;
 	}
 
-	// regex used to detect if app has been added to the homescreen
+	// regex used to detect if dist has been added to the homescreen
 	var _reSmartURL = /\/ath(\/)?$/;
 	var _reQueryString = /([\?&]ath=[^&]*$|&ath=[^&]*(&))/;
 
@@ -3447,18 +3447,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	// message in all supported languages
 	ath.intl = {
 	  en_us: {
-	    ios: 'To add this web app to the home screen: tap %icon and then <strong>Add to Home Screen</strong>.',
-	    android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>'
+	    ios: 'To add this web dist to the home screen: tap %icon and then <strong>Add to Home Screen</strong>.',
+	    android: 'To add this web dist to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>'
 	  },
 
 	  zh_cn: {
 	    ios: '如要把应用程式加至主屏幕,请点击%icon, 然后<strong>加至主屏幕</strong>',
-	    android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>'
+	    android: 'To add this web dist to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>'
 	  },
 
 	  zh_tw: {
 	    ios: '如要把應用程式加至主屏幕, 請點擊%icon, 然後<strong>加至主屏幕</strong>.',
-	    android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>'
+	    android: 'To add this web dist to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>'
 	  }
 	};
 
@@ -3474,7 +3474,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  debug: false,				// override browser checks
 	  logging: false,				// log reasons for showing or not showing to js console; defaults to true when debug is true
 	  modal: false,				// prevent further actions until the message is closed
-	  mandatory: false,			// you can't proceed if you don't add the app to the homescreen
+	  mandatory: false,			// you can't proceed if you don't add the dist to the homescreen
 	  autostart: true,			// show the message automatically
 	  skipFirstVisit: false,		// show only to returning visitors (ie: skip the first time you visit)
 	  startDelay: 1,				// display the message after that many seconds from page load
@@ -3644,7 +3644,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return;
 	  }
 
-	  // check if the app is in stand alone mode
+	  // check if the dist is in stand alone mode
 	  if (ath.isStandalone) {
 	    // execute the onAdd event if we haven't already
 	    if (!this.session.added) {
@@ -3666,7 +3666,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (ath.hasToken) {
 	      _removeToken();		// we don't actually need the token anymore, we remove it to prevent redistribution
 
-	      // this is called the first time the user opens the app from the homescreen
+	      // this is called the first time the user opens the dist from the homescreen
 	      if (!this.session.added) {
 	        this.session.added = true;
 	        this.updateSession();
