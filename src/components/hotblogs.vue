@@ -73,7 +73,7 @@ export default {
 .item {
     position: relative;
     width: calc((100% - 15px)/4);
-    margin-bottom: 10px;
+    margin-top: 5px;
     font-size: 0;
     cursor: pointer;
 }

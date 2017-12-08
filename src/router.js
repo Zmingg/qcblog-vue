@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 import Index from './pages/Index.vue';
-import Blog from './components/front/Blog.vue';
+import Blog from './pages/Blog.vue';
 import BlogShow from './components/front/BlogShow.vue';
 import Passport from './components/front/Passport.vue';
 

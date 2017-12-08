@@ -24,7 +24,7 @@
 <script>
 import BlogDetail from './common/blog.detail.vue'
 import Weather from './common/weather.vue'
-import Newblogs from './common/newblogs.vue'
+import Newblogs from '../newblogs.vue'
 import Tagcloud from './common/tagcloud.vue'
 import Gotop from './common/gotop.vue'
 

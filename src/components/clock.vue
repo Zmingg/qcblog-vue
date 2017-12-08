@@ -1,12 +1,7 @@
 <template>
-<div class="am-hide-md-down">
-	
+<div>
 	<div class="clock">
-
-
-	<canvas>您的浏览器不支持Canvas</canvas>
-
-
+		<canvas>您的浏览器不支持Canvas</canvas>
 	</div> 
 </div>
 </template>
@@ -25,6 +20,5 @@ export default{
 	}
 	.clock {
 		width: 100%;
-		margin: 0 auto 10px auto;
 	}
 </style>
