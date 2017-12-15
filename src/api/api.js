@@ -1,4 +1,4 @@
-import 'fetch-polyfill';
+import 'babel-polyfill';
 
 export const xfetch = function(url,params){
 	return new Promise(async function(resolve,reject){

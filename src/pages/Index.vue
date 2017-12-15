@@ -6,21 +6,38 @@
     </div>
     <div class="aside">
         <clock></clock>
-        <newblogs style="margin-top: 5px"></newblogs>
+        <blog-list-side title="近期更新" :data="latest" style="margin-top: 5px"></blog-list-side>
         <my style="margin-top: 10px"></my>
     </div>
 </div>
 </template>
 <script>
 import Slider from '../components/slider.vue';
-import Hotblogs from '../components/hotblogs.vue';
-import Newblogs from '../components/newblogs.vue';
+import Hotblogs from '../components/blog-grid.vue';
+import BlogListSide from '../components/blog-list-side.vue';
 import Clock from '../components/clock.vue';
 import My from '../components/my.vue';
+import { blogLatest } from '../api/blog';
 export default  {
     components: {
-        Slider, Hotblogs, Newblogs, Clock, My
+        Slider, Hotblogs, BlogListSide, Clock, My
     },
+    data(){
+        return {
+            latest: []
+        }
+    },
+    created(){
+        this.getnews();
+    },
+    methods:{
+        getnews: async function(){
+            let res = await blogLatest(6);
+            if (res.ok) {
+                this.latest = res.data;
+            }
+        }
+    }
 }
 </script>
 <style scoped>
@@ -36,12 +53,12 @@ export default  {
 .main {
     width: 100%;
     float: left;
+
 }
 .aside {
     float: right;
-    position: absolute;
+    margin-right: -260px;
     width: 250px;
-    right: 0;
     height: 100%;
     display: block;
 }

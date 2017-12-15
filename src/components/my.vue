@@ -19,6 +19,12 @@
     color: #575757;
     font-size: 15px;
 }
+.main::after {
+    display: block;
+    content: '';
+    clear: both;
+    visibility: hidden;
+}
 .title {
     margin-bottom: 5px;
     height: 35px;
@@ -29,8 +35,8 @@
     border-bottom: solid 1px #626262;
 }
 .item {
-    height: 25px;
-    line-height: 25px;
+    height: 30px;
+    line-height: 30px;
     word-break: break-all;
     white-space: nowrap;
     text-overflow: ellipsis;

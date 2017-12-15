@@ -4,21 +4,47 @@
             <blog-list></blog-list>
         </div>
         <div class="aside">
-            <newblogs style="margin-top: 5px"></newblogs>
+            <blog-list-side title="热门文章" :data="hot" style="margin-top: 5px"></blog-list-side>
+            <blog-list-side title="近期更新" :data="latest" style="margin-top: 10px"></blog-list-side>
             <my style="margin-top: 10px"></my>
         </div>
     </div>
 </template>
 <script>
-    import BlogList from '../components/blog-list.vue';
-    import Newblogs from '../components/newblogs.vue';
-    import Clock from '../components/clock.vue';
-    import My from '../components/my.vue';
-    export default  {
-        components: {
-            BlogList, Newblogs, Clock, My
+import BlogList from '../components/blog-list.vue';
+import BlogListSide from '../components/blog-list-side.vue';
+import Clock from '../components/clock.vue';
+import My from '../components/my.vue';
+import { blogHot, blogLatest } from '../api/blog';
+export default  {
+    components: {
+        BlogList, BlogListSide, Clock, My
+    },
+    data(){
+        return {
+            latest: [],
+            hot: []
+        }
+    },
+    created(){
+        this.getLatest();
+        this.getHot();
+    },
+    methods:{
+        getLatest: async function(){
+            let res = await blogLatest(6);
+            if (res.ok) {
+                this.latest = res.data;
+            }
         },
+        getHot: async function(){
+            let res = await blogHot(6);
+            if (res.ok) {
+                this.hot = res.data;
+            }
+        }
     }
+}
 </script>
 <style scoped>
     .box:after {

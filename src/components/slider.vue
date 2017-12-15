@@ -1,7 +1,9 @@
 <template>
-    <el-carousel trigger="click" :height="height">
+    <el-carousel   indicator-position="none" trigger="click" :height="height">
         <el-carousel-item v-for="img,index in imgs" :key="index">
-            <img :src="img.src" />
+
+            <div class="title">{{ img.title }}</div>
+            <img :src="img.src"/>
         </el-carousel-item>
     </el-carousel>
 </template>
@@ -20,7 +22,7 @@ export default {
     },
     computed: {
         height: function () {
-            return this.width/12*5 + 'px';
+            return this.width/12*5.2 + 'px';
         }
     },
     mounted(){
@@ -38,16 +40,12 @@ export default {
 }
 </script>
 <style scoped>
-.el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 150px;
-    margin: 0;
-}
-
 .el-carousel__item img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
     width: 100%;
+    font-size: 0;
 }
 
 .el-carousel__item:nth-child(2n) {
@@ -56,5 +54,17 @@ export default {
 
 .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
+}
+.title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: lighter;
+    color: #ffffff;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
 }
 </style>

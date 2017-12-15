@@ -12,7 +12,6 @@ export default new VueRouter({
         { path: '/', component: Index },
         { path: '/blog/:cate?', component: Blog },
         { path: '/blog/search/:tag', component: Blog },
-        { path: '/blog/:id/:title?', component: BlogShow },
-        { path: '/passport',component:Passport},
+        { path: '/blog/:id/:title?', component: BlogShow }
     ]
 });

@@ -1,41 +1,20 @@
 <template>
 <div class="main">
     <div class="title">
-        近期更新
+        {{ title }}
     </div>
-	<div v-for="blog in blogs" :key="blog.id" class="item" :title="blog.title">
+	<div v-for="blog in data" :key="blog.id" class="item" :title="blog.title">
 		{{ blog.title }}
 	</div>
 </div>
 </template>
 
 <script>
+import { blogLatest } from '../api/blog';
 export default {
-
-    data:function(){
-        return {
-            blogs:[]
-        }
-    },
-
-    filters:{
-        href:function(id,title){
-            return '/blog/'+id+'/'+title;
-        }
-    },
-        
-    created:function(){
-        this.getnews();
-    },
-
-    methods:{
-        getnews:function(){
-            this.$http.jsonp("http://zmhjy.xyz/api/news",{
-                jsonp:'api',
-                params:{ count:6 }
-            }).then((res) => this.blogs = res.body);     
-        }
-    }
+    props: [
+        'title', 'data', 'count'
+    ]
 }
 </script>
 <style scoped>
@@ -54,8 +33,8 @@ export default {
     border-bottom: solid 1px #626262;
 }
 .item {
-    height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 35px;
     word-break: break-all;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -5,7 +5,7 @@
     <router-view></router-view>
 
     <footer>
-        <p>Copyright © 1999-2017, QC.TEC, All Rights Reserved</p>
+        <p>Copyright © 2014-2017, QC.TEC, All Rights Reserved</p>
     </footer>
 
 </div>
@@ -73,7 +73,7 @@ export default  {
 }
 footer {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
 }
 </style>

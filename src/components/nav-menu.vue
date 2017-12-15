@@ -17,8 +17,7 @@ export default {
         return {
             navs: [
                 { path: '/', name: '首 页' },
-                { path: '/blog', name: '文 章' },
-                { path: '/passport', name: '登 录' },
+                { path: '/blog', name: '文 章' }
             ]
         }
     },
@@ -47,6 +46,7 @@ export default {
     line-height: 40px;
     margin-top: 10px;
     display: inline-block;
+    text-align: center;
     font-size: 20px;
     -webkit-user-select: none;
     -moz-user-select: none;

@@ -54,6 +54,7 @@ module.exports = merge(common, {
         compress: true,
         hot: true,
         hotOnly: true,
+        disableHostCheck: true
     }
 
 

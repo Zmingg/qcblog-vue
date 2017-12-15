@@ -3,7 +3,7 @@
         <ul class="hot-list">
             <li class="item" v-for="blog in blogs">
                 <span class="warp"></span>
-                <img :src="blog.thumb_img | src" />
+                <img :src="blog.thumb_img | uri" />
                 <span class="text">
                     {{ blog.title }}
                 </span>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { blogHot } from '../api/blog';
 export default {
 
     data:function(){
@@ -22,11 +23,8 @@ export default {
     },
 
     filters:{
-        src:function(url){
-            return 'http://zmhjy.xyz/'+url;
-        },
-        href:function(id,title){
-            return '/blog/'+id+'/'+title;
+        uri: function (url) {
+            return 'http://p04p94ehj.bkt.clouddn.com/' + url;
         }
     },
         
@@ -35,13 +33,11 @@ export default {
     },
 
     methods:{
-        getblogs:function(){
-            this.$http.jsonp("http://zmhjy.xyz/api/hots",{
-                jsonp:'api',
-                params:{count:8}
-            }).then(function(res){
-                this.blogs = res.body;
-            });     
+        getblogs: async function(){
+            let res = await blogHot();
+            if (res.ok) {
+                this.blogs = res.data;
+            }
         }
     }
 }
