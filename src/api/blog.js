@@ -70,4 +70,20 @@ const blogLatest = async (count = 8) => {
     }
 }
 
-export { blogAll, blogPage, blogHot, blogLatest};
+const blogOne = async (id) => {
+    try {
+        let res = await fetch(base + 'blog/' + id);
+        let data = await res.json();
+        return {
+            ok: true,
+            data: data
+        }
+    } catch (err) {
+        return {
+            ok: false,
+            err: err
+        }
+    }
+}
+
+export { blogAll, blogPage, blogHot, blogLatest, blogOne};

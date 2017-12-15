@@ -1,12 +1,12 @@
 <template>
     <div>
         <ul class="list">
-            <li class="item" v-for="blog in blogs">
+            <li class="item" v-for="blog in blogs" @click="view(blog.id)">
                 <div class="item-img">
                     <span class="warp"></span>
                     <img :src="blog.thumb_img|uri" />
                 </div>
-                <div class="item-data">
+                <div class="item-data" @click="view">
                     <div class="data-title">{{blog.title}}</div>
                     <div class="data-abs">{{blog.abstract}}</div>
                     <div class="data-mes">
@@ -25,7 +25,7 @@
     </div>
 </template>
 <script>
-import { blogPage } from '../api/blog';
+import { blogPage } from '../../api/blog';
 export default {
     data(){
         return {
@@ -72,12 +72,18 @@ export default {
                         if ( (_time-this.refresh_last)>2000) {
                             this.refresh_last = _time;
                             this.isloading = true;
-//                            m.mes='<i class="am-icon-spinner am-icon-pulse"></i> Loading...';
                             setTimeout(this.getMore,1000);
                         }
                     }
                 }
             });
+        },
+        view: function (id) {
+            if(typeof id === 'number') {
+                this.$router.push('/blog/' + id);
+            }
+
+
         }
     }
 

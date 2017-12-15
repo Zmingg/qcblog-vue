@@ -6,6 +6,7 @@ import 'babel-polyfill';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
+require('font-awesome-webpack');
 
 import store from './store.js';
 import router from './router.js';

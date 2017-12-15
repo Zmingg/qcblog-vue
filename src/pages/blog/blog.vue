@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <div class="main">
-            <blog-list></blog-list>
+            <router-view></router-view>
         </div>
         <div class="aside">
             <blog-list-side title="热门文章" :data="hot" style="margin-top: 5px"></blog-list-side>
@@ -11,14 +11,13 @@
     </div>
 </template>
 <script>
-import BlogList from '../components/blog-list.vue';
-import BlogListSide from '../components/blog-list-side.vue';
-import Clock from '../components/clock.vue';
-import My from '../components/my.vue';
-import { blogHot, blogLatest } from '../api/blog';
+import BlogListSide from '../../components/blog-list-side.vue';
+import Clock from '../../components/clock.vue';
+import My from '../../components/my.vue';
+import { blogHot, blogLatest } from '../../api/blog';
 export default  {
     components: {
-        BlogList, BlogListSide, Clock, My
+        BlogListSide, Clock, My
     },
     data(){
         return {

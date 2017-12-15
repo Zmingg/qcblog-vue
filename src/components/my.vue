@@ -3,12 +3,10 @@
         <div class="title">
             联系我
         </div>
-        <div class="item">
-            腾讯: 157679749
-        </div>
-        <div class="item">
-            邮箱: zmingg@outlook.com
-        </div>
+        <div class="item"><i class="fa fa-qq fa-fw" aria-hidden="true"></i> 157679749</div>
+        <div class="item"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i> zmingg@outlook.com</div>
+        <div class="item"><i class="fa fa-github fa-fw" aria-hidden="true"></i> github.com/Zmingg</div>
+
 
     </div>
 </template>
@@ -37,6 +35,7 @@
 .item {
     height: 30px;
     line-height: 30px;
+    font-size: 15px;
     word-break: break-all;
     white-space: nowrap;
     text-overflow: ellipsis;

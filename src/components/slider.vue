@@ -12,9 +12,9 @@ export default {
     data(){
         return {
             imgs: [
-                {title:'QC BLOG —— For Web Technology Share',src:'assets/img/bing-1.jpg'},
-                {title:'Laravel —— 为WEB艺术家创造的PHP框架',src:'assets/img/bing-2.jpg'},
-                {title:'Vue.Js 2.0 渐进式JavaScript 框架',src:'assets/img/bing-3.jpg'}
+                {title:'QC BLOG —— Web Page Technique',src:'http://p04p94ehj.bkt.clouddn.com/slider/slider_1.jpg'},
+                {title:'Node.JS —— All things are possible',src:'http://p04p94ehj.bkt.clouddn.com/slider/slider_2.jpg'},
+                {title:'Vue.Js 2.0 —— JavaScript Frame',src:'http://p04p94ehj.bkt.clouddn.com/slider/slider_3.jpg'}
             ],
             width: 1000
         }
@@ -22,7 +22,7 @@ export default {
     },
     computed: {
         height: function () {
-            return this.width/12*5.2 + 'px';
+            return this.width/12*5 + 'px';
         }
     },
     mounted(){
