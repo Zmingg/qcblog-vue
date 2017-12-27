@@ -8,18 +8,21 @@ Vue.use(VueRouter);
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
-import ElementUI from 'element-ui'
-Vue.use(ElementUI);
+import ElementUi from 'element-ui'
+Vue.use(ElementUi);
+import 'element-ui/lib/theme-chalk/index.css'
 
 require('font-awesome-webpack');
 
-import store from './store.js';
-import router from './router.js';
+import './assets/css/app.css';
+
+import Store from './store.js';
+import Router from './router.js';
 import App from './app.vue';
 
-const app = new Vue({
-    router: new VueRouter(router),
-    store: new Vuex.Store(store),
+new Vue({
+    router: new VueRouter(Router),
+    store: new Vuex.Store(Store),
     render: h => h(App)
 
 }).$mount('#app');

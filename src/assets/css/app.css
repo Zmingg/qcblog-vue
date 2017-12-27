@@ -12,3 +12,6 @@ html,body {
 img {
     max-width: 100%;
 }
+a:-webkit-any-link {
+	color: inherit;
+}
