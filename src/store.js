@@ -1,12 +1,9 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex);
 import { applyToken,refreshToken,checkUser,deleteToken,registerCode,regCdCheck,signUp } from './api/api';
 import router from './router';
 import validator from 'validator';
 
 
-export default new Vuex.Store({
+export default {
 	state: {
 		isLogin: false,
 		user: {email:''},
@@ -86,4 +83,4 @@ export default new Vuex.Store({
 		}
 	}
 	
-})
+}

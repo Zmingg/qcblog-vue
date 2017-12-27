@@ -1,11 +1,21 @@
 const earth = new Image();
-earth.src = './assets/img/earth.png';
+earth.src = require('./assets/earth.png');
 const bg = new Image();
-bg.src = './assets/img/blockbg.jpg';
+bg.src = require('./assets/blockbg.jpg');
 
 export const Clock = function(canvas){
-	this.init(canvas);
-	this.run(canvas);
+    if (bg.complete) {
+        this.init(canvas);
+        this.run(canvas);
+    } else {
+        bg.onload = () => {
+            this.init(canvas);
+            this.run(canvas);
+            bg.onload = null;
+        }
+    }
+
+
 }
 
 Clock.prototype.init = function(can){

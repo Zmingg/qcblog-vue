@@ -47,7 +47,7 @@
     "vuex": "^3.0.1"
   },
   "scripts": {
-    "pack": "webpack",
+    "pack": "webpack  --config config/webpack.prod.js",
     "start": "webpack-dev-server  --config config/webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "jasmine": "jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json"

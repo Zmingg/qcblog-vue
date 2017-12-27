@@ -1,13 +1,11 @@
 <template>
     <div class="main">
-        <div class="title">
-            联系我
-        </div>
+        <div class="title">联系我</div>
         <div class="item"><i class="fa fa-qq fa-fw" aria-hidden="true"></i> 157679749</div>
         <div class="item"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i> zmingg@outlook.com</div>
-        <div class="item"><i class="fa fa-github fa-fw" aria-hidden="true"></i> github.com/Zmingg</div>
-
-
+        <div class="item"><i class="fa fa-github fa-fw" aria-hidden="true"></i>
+            <a href="https://github.com/Zmingg" target="_blank">github.com/Zmingg</a>
+        </div>
     </div>
 </template>
 <style scoped>
@@ -40,7 +38,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    /*border-top: dotted 1px #cbcbcb;*/
-    cursor: pointer;
+}
+a {
+    text-decoration: none
 }
 </style>
