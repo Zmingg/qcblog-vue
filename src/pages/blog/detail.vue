@@ -31,7 +31,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .main {
     margin-top: 5px;
     padding: 15px;
@@ -51,7 +51,9 @@ export default {
     line-height: 25px;
     font-size: 14px;
 }
-.content pre {
+</style>
+<style>
+pre {
     padding: 5px;
     border-radius: 5px;
     color: #f3f3f3;

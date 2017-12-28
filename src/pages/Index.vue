@@ -53,7 +53,7 @@ export default  {
 .main {
     width: 100%;
     float: left;
-
+    margin-top: 5px;
 }
 .aside {
     float: right;
@@ -63,7 +63,9 @@ export default  {
     display: block;
 }
 .hot {
-    margin-top: 5px;
+    margin-top: 10px;
+    padding: 10px;
+    background: #ffffff;
 }
 @media screen and (max-width: 900px) {
     .aside {

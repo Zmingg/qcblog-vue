@@ -14,7 +14,6 @@
 import Index from './pages/Index.vue';
 import NavMenu from './components/nav-menu.vue';
 import { mapActions } from 'vuex'
-import { xfetch } from './api/api'
 export default  {
 	components:{
 	  	Index, NavMenu
@@ -44,9 +43,6 @@ export default  {
         }
 
     },
-    mounted:function(){
-
-    },
     methods:{
         ...mapActions([
             'checkSignin','logout'
@@ -55,12 +51,8 @@ export default  {
       		this.isActive=!this.isActive;
       	},
       	getCates:function(){
-           xfetch("http://laravel.cc/api/cates")
-	           .then(res=>res.json())
-	           .then(json=>{
-	              this.cates = json;
-	           })
-       },
+
+        },
 
     }
 }
@@ -74,6 +66,7 @@ export default  {
 footer {
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
 }
 </style>
