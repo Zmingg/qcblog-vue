@@ -1,7 +1,7 @@
 <template>
     <div class="hot-blog">
-        <ul class="hot-list">
-            <li class="item" v-for="blog in blogs">
+        <ul class="hot-list" @click="goDetail">
+            <li class="item" v-for="blog in blogs" :data-id="blog.id">
                 <span class="warp"></span>
                 <img :src="blog.thumb_img | uri" />
                 <span class="text">
@@ -28,7 +28,7 @@ export default {
         }
     },
         
-    created:function(){
+    created: function () {
         this.getblogs();
     },
 
@@ -37,6 +37,11 @@ export default {
             let res = await blogHot();
             if (res.ok) {
                 this.blogs = res.data;
+            }
+        },
+        goDetail: function (e) {
+            if (e.target.tagName === 'SPAN') {
+                this.$router.push('/blog/' + e.target.parentNode.dataset.id);
             }
         }
     }

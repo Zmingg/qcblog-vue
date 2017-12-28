@@ -18,15 +18,19 @@ export default {
             blog: {}
         }
     },
-    mounted(){
-        this.getData()
+    async beforeRouteEnter (to, from, next) {
+        let res = await blogOne(to.params.id);
+        if (res.ok) {
+            next(vm => {
+                vm.blog = res.data;
+            })
+        }
     },
-    methods: {
-        getData: async function () {
-            let res = await blogOne(this.$route.params.id);
-            if (res.ok) {
-                this.blog = res.data;
-            }
+    async beforeRouteUpdate (to, from, next) {
+        let res = await blogOne(to.params.id);
+        if (res.ok) {
+            this.blog = res.data;
+            next();
         }
     }
 }

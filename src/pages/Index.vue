@@ -41,12 +41,12 @@ export default  {
 }
 </script>
 <style scoped>
-.box:after {
+:local(.box:after) {
     clear: both;
     content: " ";
     display: block;
 }
-.box {
+:local(.box) {
     position: relative;
     padding-right: 260px;
 }

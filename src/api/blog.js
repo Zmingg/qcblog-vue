@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-const base = 'http://127.0.0.1:3000/';
+const base = 'http://47.100.40.22:3000/';
 
 const blogAll = async () => {
     try {
