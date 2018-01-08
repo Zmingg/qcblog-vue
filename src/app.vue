@@ -17,44 +17,7 @@ import { mapActions } from 'vuex'
 export default  {
 	components:{
 	  	Index, NavMenu
-	},
-    data:function(){
-        return {
-            isActive:false,
-            cates:[],
-            isLogin: false,
-            user: {},
-        }
-    },
-    watch:{
-        'isActive':function(){
-            if (this.isActive==true) {
-                document.getElementById('offcanvas').addEventListener('click',()=>{
-                	this.isActive=false;
-                },true);
-            }
-        },
-        '$route':function(){
-            this.isActive=false;
-        },
-        '$store.state.isLogin':function(){
-            this.isLogin = this.$store.state.isLogin;
-            this.user = this.$store.state.user;
-        }
-
-    },
-    methods:{
-        ...mapActions([
-            'checkSignin','logout'
-        ]),
-      	toggleCanvas:function(){
-      		this.isActive=!this.isActive;
-      	},
-      	getCates:function(){
-
-        },
-
-    }
+	}
 }
 
 </script>
@@ -65,8 +28,10 @@ export default  {
 }
 footer {
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 5px;
     text-align: center;
+    background: #ffffff;
+    font-size: 14px;
 }
 </style>

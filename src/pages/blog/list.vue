@@ -92,7 +92,6 @@ export default {
 </script>
 <style scoped>
 .list {
-    margin-top: 5px;
     color: #555555;
 }
 .item {

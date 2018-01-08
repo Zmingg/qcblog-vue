@@ -20,6 +20,5 @@ export default{
 	}
 	.clock {
 		width: 100%;
-		margin-top: 5px;
 	}
 </style>

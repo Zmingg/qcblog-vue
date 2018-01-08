@@ -37,7 +37,6 @@ export default {
 </script>
 <style scoped>
 .main {
-    margin-top: 5px;
     padding: 15px;
     background: #ffffff;
 }

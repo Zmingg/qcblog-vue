@@ -41,25 +41,29 @@ export default  {
 }
 </script>
 <style scoped>
-:local(.box:after) {
+.box:after {
     clear: both;
     content: " ";
     display: block;
 }
-:local(.box) {
+.box {
     position: relative;
     padding-right: 260px;
 }
 .main {
     width: 100%;
     float: left;
-    margin-top: 5px;
 }
 .aside {
     float: right;
     margin-right: -260px;
     width: 250px;
     height: 100%;
+    display: block;
+}
+.aside:after {
+    clear: both;
+    content: " ";
     display: block;
 }
 .hot {

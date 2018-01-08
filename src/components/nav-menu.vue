@@ -4,7 +4,7 @@
         <nav @click="select">
             <li v-for="nav in navs"
                 :data-path="nav.path"
-                :class="{active: nav.path===$route.path}">
+                :class="{active: nav.path===mainPath}">
                 {{nav.name}}
             </li>
         </nav>
@@ -19,6 +19,13 @@ export default {
                 { path: '/', name: '首 页' },
                 { path: '/blog', name: '文 章' }
             ]
+        }
+    },
+    computed: {
+        mainPath: function () {
+            return this.$route.matched[0].path === ''
+                ? '/'
+                : this.$route.matched[0].path;
         }
     },
     methods: {
@@ -38,7 +45,7 @@ export default {
     width: 100%;
     height: 50px;
     line-height: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 .logo {
     width: 150px;

@@ -4,7 +4,7 @@
             <router-view></router-view>
         </div>
         <div class="aside">
-            <blog-list-side title="热门文章" :data="hot" style="margin-top: 5px"></blog-list-side>
+            <blog-list-side title="热门文章" :data="hot"></blog-list-side>
             <blog-list-side title="近期更新" :data="latest" style="margin-top: 10px"></blog-list-side>
             <my style="margin-top: 10px"></my>
         </div>
