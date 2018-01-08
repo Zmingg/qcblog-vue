@@ -1,14 +1,16 @@
 <template>
 <div id="goTop" @click="goTop()" v-show="show">
-    <img src="assets/img/top.png">
+    <img :src="imgSrc">
 </div>
 </template>
 <script>
+import topImg from '../assets/img/top.png';
 export default{
 	data:function(){
 		return{
-			show:false,
-			transtion:100,
+			show: false,
+			transtion: 100,
+            imgSrc: topImg,
 		}
 	},
 
