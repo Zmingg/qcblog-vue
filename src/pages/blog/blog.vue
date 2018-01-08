@@ -8,16 +8,18 @@
             <blog-list-side title="近期更新" :data="latest" style="margin-top: 10px"></blog-list-side>
             <my style="margin-top: 10px"></my>
         </div>
+        <go-top></go-top>
     </div>
 </template>
 <script>
 import BlogListSide from '../../components/blog-list-side.vue';
 import Clock from '../../components/clock.vue';
 import My from '../../components/my.vue';
+import GoTop from '../../components/gotop.vue';
 import { blogHot, blogLatest } from '../../api/blog';
 export default  {
     components: {
-        BlogListSide, Clock, My
+        BlogListSide, Clock, My, GoTop
     },
     data(){
         return {
