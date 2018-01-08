@@ -46,6 +46,9 @@ export default {
         this.getBlog();
         this.initScroll();
     },
+    destroyed(){
+        window.removeEventListener('scroll',this.refresh);
+    },
     methods: {
         getBlog: async function () {
             let res = await blogPage(this.curpage);
@@ -64,19 +67,20 @@ export default {
         },
         initScroll: function () {
             this.refresh_time = new Date().getTime();
-            addEventListener('scroll',() => {
-                let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if (this.hasmore) {
-                    if (scrollTop >= document.body.clientHeight - window.screen.height) {
-                        let _time = new Date();
-                        if ( (_time-this.refresh_last)>2000) {
-                            this.refresh_last = _time;
-                            this.isloading = true;
-                            setTimeout(this.getMore,1000);
-                        }
+            window.addEventListener('scroll',this.refresh);
+        },
+        refresh: function () {
+            let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+            if (this.hasmore) {
+                if (scrollTop >= document.body.clientHeight - window.screen.height) {
+                    let _time = new Date();
+                    if ( (_time-this.refresh_last)>2000) {
+                        this.refresh_last = _time;
+                        this.isloading = true;
+                        setTimeout(this.getMore,1000);
                     }
                 }
-            });
+            }
         },
         view: function (id) {
             if(typeof id === 'number') {
